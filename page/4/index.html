@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Cyrus' Blog - Think twice, code once.</title><meta name="author" content="cyrus28214"><meta name="copyright" content="cyrus28214"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Cyrus&#39; Blog">
+<meta property="og:url" content="https://cyrus28214.top/page/4/index.html">
+<meta property="og:site_name" content="Cyrus&#39; Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cyrus28214.top/images/icon512.png">
+<meta property="article:author" content="cyrus28214">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="个人博客">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyrus28214.top/images/icon512.png"><link rel="shortcut icon" href="/images/icon32.png"><link rel="canonical" href="https://cyrus28214.top/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cyrus\' Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-30 07:12:23'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/icon512.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/images/atri.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Cyrus' Blog"><span class="site-name">Cyrus' Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Cyrus' Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/images/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/images/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/post/d157634e8674/" title="ZJU校巴-Reverse1解题记录"><img class="post-bg" src="https://cyrus28214.top/images/s/6523978ec458853aef40ef58.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ZJU校巴-Reverse1解题记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/d157634e8674/" title="ZJU校巴-Reverse1解题记录">ZJU校巴-Reverse1解题记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-09T06:59:56.000Z" title="发表于 2023-10-09 14:59:56">2023-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E5%AE%89/">网安</a></span></div><div class="content">前言最近开始正式学习CTF了，准备先打一打校巴上比较简单的题，遇到什么不懂的再去学习。慢慢提升自己的水平。
+这是我的第一道Reverse。
+题目题目给了一个二进制可执行程序，执行这个程序，会显示“Please input flag:”，尝随便输入几个字符，结果会输出“Your flag is not right.”。
+
+
+
+使用Ollydbg打开这个程序，找到以下这段需要逆向分析的主要内容
+
+在这段代码之前，还有一系列的赋值操作，以ASCII的形式读取，可以获得 “MMMwjau`S]]S}ybS?4:;5:&lt;4&lt;q” 这串神秘的字符串，猜测与flag的值有关。
+123456789101112131415161718192021222324252627004015AB  |. E8 40110000    CALL &lt;JMP.&amp;msvcrt.scanf&gt;                 ; \scanf004015B0  |. C74424 4C 0000&gt;MOV DWORD PTR SS:[ESP+4C],0004015B8  |. EB 40  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/64e4e3d61f56/" title="XPath语法参考">XPath语法参考</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-09T05:51:34.000Z" title="发表于 2023-10-09 13:51:34">2023-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="content">简介XPath代表XML路径语言（XML path language），当然，XPath也是可以用于HTML的。
+XPath可以用类似路径的写法，识别和导航XML中的元素。
+比如写爬虫的时候，需要解析HTML，就可以用XPath方便的导航到你想找到的元素。
+另外，我发现 Chrome 的 Dev Tools 有很方便的功能，就是你可以在“Elements”一栏里右键某个元素，并选择“Copy &gt; Copy XPath”就可以很方便地获得元素的XPath
+下面是一些XPath常用的语法，记录在这里用作参考。
+
+
+选择元素
+
+
+表达式
+说明
+
+
+
+name
+选择所有名字为“name”的元素
+
+
+&#x2F;
+从根节点开始选择，类似Linux中的绝对路径
+
+
+&#x2F;&#x2F;
+选择所有后代（孩子、孩子的孩子等等）
+
+
+.
+相当于Linux中的相对路径，从当前元素开始选择
+
+
+..
+和Linux中的路径相同，选择父元素
+
+
+@
+选择属性
+
+
+[n]
+选择第n个元素，注意下标从1开始
+
+
+[last()]
+选择最后一个元素
+
+
+[last()-n]
+选择最后n个元素
+
+
+[posi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/edace09c6f86/" title="SQL学习笔记（七）建立索引">SQL学习笔记（七）建立索引</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-08T02:01:30.000Z" title="发表于 2023-10-08 10:01:30">2023-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">引入当数据量小的时候，查找操作几乎是瞬间完成的，但是当数据库的规模很大的时候，对数据库的搜索操作会变得很慢，因为默认情况下数据库是使用低效的线性查找，这时候就需要我们建立 索引 。
+1CREATE INDEX 索引名 ON 表名 (列名, ...);
+
+1CREATE INDEX title_index ON movies (title);
+
+当执行这个语句之后，数据库会为这几列创建一种名为 B树（B-Tree） 的数据结构，将搜索加速到 $O(\log n)$ ，但同时使用的储存空间也会更多，所以推荐只在需要经常查找的字段上建立索引。
+另外，.timer on可以打开计时器比较执行速度，但是在我使用的这么小的数据里是看不出效果的。
+本文属于系列文章：SQL学习笔记
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/02beb009aea2/" title="SQL学习笔记（六）主键与外键">SQL学习笔记（六）主键与外键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-07T06:22:34.000Z" title="发表于 2023-10-07 14:22:34">2023-10-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">准备为了介绍 主键（Primary Keys） 与外键 （Foreign Keys） ，我们再新建一个数据库。
+1234sqlite3 movies.db# SQLite version 3.43.1 2023-09-11 12:01:27# Enter &quot;.help&quot; for usage hints.# sqlite&gt;
+
+假如movies.db不存在，SQLite会自动创建它。
+
+
+我用ChatGPT又生成了一些数据（不确定有没有错误）。
+movies.csv:（两列分别代表id和title）
+123456781,The Dark Knight2,Inception3,The Shawshank Redemption4,The Godfather5,The Godfather: Part II......
+
+stars.csv:（两列分别代表id和name）
+123456781,Christian Bale2,Heath Ledger3,Aaron Eckhart4,Michael Caine5,Gary Oldman......
+
+movies_stars ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/068582ed9a63/" title="我用JavaScript写了一个小游戏！"><img class="post-bg" src="https://cyrus28214.top/images/s/651fa19cc458853aef99b7d3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="我用JavaScript写了一个小游戏！"></a></div><div class="recent-post-info"><a class="article-title" href="/post/068582ed9a63/" title="我用JavaScript写了一个小游戏！">我用JavaScript写了一个小游戏！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-06T05:28:52.000Z" title="发表于 2023-10-06 13:28:52">2023-10-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="content">链接我写了一个简单的小游戏。
+
+游戏链接(可能需要加载一段时间)
+Github开源地址
+简介前几天我在玩 Emoji Kitchen(一个可以混合emoji变成新的emoji的东西) 的时候，突然想到，有那么多的emoji，这不就是免费的图片素材库嘛，于是就使用纯js和emoji素材写了了这个小游戏。
+
+
+非常简陋的小游戏，完成度很低，但是这应该是我接触的第一个比较需要代码架构能力的项目，因为之前参加算法竞赛，写的代码都是“一次性”，提交题目通过后就不会再维护，为了在规定时间内完成题目，变量名都是很短的a、b、c，从来没注意可读性和可维护性，也很少写OOP的代码。
+写这个小游戏让我学到很多，比如面向对象程序设计、游戏的ECS（Entity Component System）架构（尽管我的游戏里没有用到Component）、代码之间如何解耦、怎么写规范的Commit Message等等。开发过程中也经历了数次痛苦的重构，让我知道了 “Think twice, code once”这句话 有多么的重要。
+这还只是一个简陋的demo，可能想起来了就会偶尔加点功能？在代码变成屎山之前我会物尽其 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/5ac6b37ce725/" title="SQL学习笔记（五）插入、更新与删除">SQL学习笔记（五）插入、更新与删除</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-06T05:28:26.000Z" title="发表于 2023-10-06 13:28:26">2023-10-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">INSERT1INSERT INTO 表名 (列名, ...) VALUES (值, ...);
+
+这样可以插入新的数据，例如插入一本新书“A Wrinkle in Time”。
+1INSERT INTO books (title, price, sales, category) VALUES (&#x27;A Wrinkle in Time&#x27;,23.99,1,&#x27;Fantasy&#x27;);
+
+键入SELECT * FROM books;可以看到已经成功地插入了新的书。
+
+
+UPDATE用UPDATE将所有“Science Fiction”分类改名为“Sci-fi”可以这样写：
+1UPDATE books SET category = &#x27;Sci-fi&#x27; WHERE category = &#x27;Science Fiction&#x27;;
+
+这是我们接触到的第一个“破坏性”的命令，所以键入命令时请double check一下，确认这就是你想要的，避免造成严重的后果 。实际的项目中一般有权限控制、备份、生产环境隔离等方法来避免这种悲剧的发生， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/04355221d8d3/" title="SQL学习笔记（四）条件与分组语句">SQL学习笔记（四）条件与分组语句</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-04T05:14:33.000Z" title="发表于 2023-10-04 13:14:33">2023-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">上一章节里我们使用了WHERE关键字进行了条件的筛选，实际上这样的关键字还有很多，以下是常用的一些。
+GROUP BY将数据按某个字段分组
+1SELECT category, COUNT(*) FROM books GROUP BY category;
+
+
+
+输出：
+12345678┌─────────────────┬──────────┐│    category     │ COUNT(*) │├─────────────────┼──────────┤│ Classic         │ 6        ││ Fantasy         │ 4        ││ Fiction         │ 7        ││ Science Fiction │ 3        │└─────────────────┴──────────┘
+
+ORDER BY按某个字段排序，例如按每种分类的个数排序。
+1SELECT category, COUNT(*) FROM books GROUP BY category ORDER BY COUNT(*);
+
+输出：
+123456 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/9d100e533618/" title="【CS50】课程推荐与学习心得"><img class="post-bg" src="https://cyrus28214.top/images/s/651907edc458853aef96d991.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【CS50】课程推荐与学习心得"></a></div><div class="recent-post-info"><a class="article-title" href="/post/9d100e533618/" title="【CS50】课程推荐与学习心得">【CS50】课程推荐与学习心得</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-04T05:10:07.000Z" title="发表于 2023-10-04 13:10:07">2023-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="content">
+注：本文中所有标注*号的链接表示需要魔法上网
+推荐CS50真的是非常好的一门计算机入门课程，由哈佛大学David J. Malan教授主讲，它完全是面向对于计算机科学0基础的学习者，既简单易懂又干货满满，我真的难以相信，这是一门完全免费的课程。
+
+
+
+看看CS50的目录，CS50是从scratch开始讲的，这足以证明它的初学者友好。
+难能可贵的是，这门课并不因为简单就牺牲专业性。这并不是一门水课，它干货满满。从算法、数据结构到web三剑客html、css、js，再到web开发框架flask。全都是干货，况且每一次的CS50课程还配套相应的作业，有些作业难度不低。
+这门课程很多内容都只是一个入门的引导，而不是一个完整的教程，但是正如David教授所说的那样，他不是要教你一种编程语言，他要教你 计算机科学 ，让你能够学会任何一门编程语言，让你有能力追逐最新的技术潮流。
+学习心得尽管我并不是零基础的学习者，但是听了这门课程我仍然收获颇丰，不仅收获了专业知识，也获得了很多乐趣，毕竟David教授是我见到的第一个能把课上得比看电影还有意思的教授。
+非常羡慕Harvard这样的世界名校提供的资源 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/6495a78f89c0/" title="SQL学习笔记（三）基本查询语句">SQL学习笔记（三）基本查询语句</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-03T12:37:15.000Z" title="发表于 2023-10-03 20:37:15">2023-10-03</time></span></div><div class="content">SQL中的函数SQL中自带了很多函数，常用的有这几种：
+
+
+
+函数
+描述
+
+
+
+AVG
+求平均数
+
+
+COUNT
+计数
+
+
+DISTINCT
+去重
+
+
+LOWER
+小写
+
+
+UPPER
+大写
+
+
+MAX
+取最大值
+
+
+MIN
+取最小值
+
+
+
+
+DISTINCT假如我们想要查看所有的分类，可以这样子写:
+1SELECT DISTINCT(category) FROM books;
+
+输出:
+12345678┌─────────────────┐│    category     │├─────────────────┤│ Fiction         ││ Science Fiction ││ Fantasy         ││ Classic         │└─────────────────┘
+
+COUNT查看有多少种分类：
+1SELECT COUNT(DISTINCT(category)) FROM books; 
+
+输出是这样的
+12345┌───────────────────────────┐│ COUNT(DISTINCT(category)) │├──────── ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/3f6aa83f99ff/" title="SQL学习笔记（二）创建一个表">SQL学习笔记（二）创建一个表</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-02T06:29:55.000Z" title="发表于 2023-10-02 14:29:55">2023-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">在命令行里键入以下命令：
+1sqlite3
+
+如果你按照上一个章节中那样配置好了环境，应该可以看到以下输出。
+123# SQLite version 3.43.1 2023-09-11 12:01:27# Enter &quot;.help&quot; for usage hints.# sqlite&gt;
+
+看到输入提示符变成“sqlite&gt;”，我们就进入了sqlite的命令行。
+基本语句数据库有四个基本操作CRUD，即Create增、Read查、Update改、Delete删，在SQL中分别对应以下语句。
+
+增：CREATE, INSERT
+查：SELECT
+改：UPDATE
+删：DELETE, DROP
+
+
+
+创建一个表使用以下命令来创建一个表，注意所有的SQL语句末尾都要有分号。
+1CREATE TABLE 表名 (&#x27;列名&#x27; 数据类型, ...);
+
+不同的数据库可能对相同的类型有不同的名称、不同的长度、数据范围以sqlite为例，常用的数据类型有以下几种：
+
+
+
+数据类型
+描述
+
+
+
+NULL
+空值NULL
+
+
+INTEGER
+整数，具体位数取决于 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/icon512.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cyrus28214</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/images/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/images/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"><img src="https://cyrus28214.top/images/eecs598/ImageNet.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"/></a><div class="content"><a class="title" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4">CS231n/EECS598 学习笔记（一） Lecture 1 - 4</a><time datetime="2024-02-25T12:19:08.000Z" title="发表于 2024-02-25 20:19:08">2024-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS"><img src="/images/emmet.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学会Emmet语法，告别手打HTML和CSS"/></a><div class="content"><a class="title" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS">学会Emmet语法，告别手打HTML和CSS</a><time datetime="2024-02-07T10:50:44.000Z" title="发表于 2024-02-07 18:50:44">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/deeeefb148a9/" title="用Java中的Record（记录类）简化代码">用Java中的Record（记录类）简化代码</a><time datetime="2024-01-22T04:11:16.000Z" title="发表于 2024-01-22 12:11:16">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/303a9aabf405/" title="OSI七层网络模型"><img src="https://cyrus28214.top/images/s/6545ecacc458853aef62eca9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OSI七层网络模型"/></a><div class="content"><a class="title" href="/post/303a9aabf405/" title="OSI七层网络模型">OSI七层网络模型</a><time datetime="2024-01-18T16:00:00.000Z" title="发表于 2024-01-19 00:00:00">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token"><img src="https://cyrus28214.top/images/set-cookie.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="理解Cookie、Session和Token"/></a><div class="content"><a class="title" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token">理解Cookie、Session和Token</a><time datetime="2024-01-17T14:38:04.000Z" title="发表于 2024-01-17 22:38:04">2024-01-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DS-AI/"><span class="card-category-list-name">DS&AI</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">信息安全</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">学习</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E7%90%86/"><span class="card-category-list-name">数理</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/"><span class="card-category-list-name">生活</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"><span class="card-category-list-name">科学计算</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CTF/" style="font-size: 1.21em; color: #999ea4">CTF</a> <a href="/tags/%E6%8E%A8%E8%8D%90/" style="font-size: 1.1em; color: #999">推荐</a> <a href="/tags/SQL/" style="font-size: 1.44em; color: #99a7ba">SQL</a> <a href="/tags/C-C/" style="font-size: 1.39em; color: #99a4b4">C/C++</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">游戏开发</a> <a href="/tags/Java/" style="font-size: 1.1em; color: #999">Java</a> <a href="/tags/socket/" style="font-size: 1.1em; color: #999">socket</a> <a href="/tags/SymPy/" style="font-size: 1.39em; color: #99a4b4">SymPy</a> <a href="/tags/MIT-Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.16em; color: #999b9e">MIT Missing Semester学习笔记</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 1.1em; color: #999">编程语言</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/" style="font-size: 1.21em; color: #999ea4">线性代数笔记</a> <a href="/tags/Floyd%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">Floyd算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.27em; color: #99a0a9">题解</a> <a href="/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">程序设计</a> <a href="/tags/ZJU%E6%A0%A1%E5%B7%B4/" style="font-size: 1.21em; color: #999ea4">ZJU校巴</a> <a href="/tags/SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.44em; color: #99a7ba">SQL学习笔记</a> <a href="/tags/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" style="font-size: 1.1em; color: #999">数字电路</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">总结</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/Bash/" style="font-size: 1.16em; color: #999b9e">Bash</a> <a href="/tags/NumPy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">NumPy学习笔记</a> <a href="/tags/Cookie/" style="font-size: 1.1em; color: #999">Cookie</a> <a href="/tags/RSA/" style="font-size: 1.1em; color: #999">RSA</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.16em; color: #999b9e">操作系统</a> <a href="/tags/CS50/" style="font-size: 1.1em; color: #999">CS50</a> <a href="/tags/XPath/" style="font-size: 1.16em; color: #999b9e">XPath</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">编译原理</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 1.1em; color: #999">逆向工程</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.16em; color: #999b9e">环境配置</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">优化</a> <a href="/tags/Jupyter/" style="font-size: 1.1em; color: #999">Jupyter</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 1.1em; color: #999">字符串</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 1.1em; color: #999">命令行</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 1.33em; color: #99a2af">线性代数</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.33em; color: #99a2af">算法</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/%E5%AE%9E%E7%8E%B0%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 1.21em; color: #999ea4">实现常用排序算法</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">23</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">55</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-06-28T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-29T23:12:23.724Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By cyrus28214</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["Think twice, code once."])
+  } else {
+    document.getElementById("subtitle").textContent = "Think twice, code once."
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

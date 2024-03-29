@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ZJU校巴-calculator解题记录 | Cyrus' Blog</title><meta name="author" content="cyrus28214"><meta name="copyright" content="cyrus28214"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="题目给了一个IP和端口，提示使用netcat连接： 1nc 10.214.160.13 11002  连接后显示以下文本 12345678&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;Mom: finish these 10 super simple calculations,     and you will get a flagMelody:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZJU校巴-calculator解题记录">
+<meta property="og:url" content="https://cyrus28214.top/post/33f3f8cb15c3/index.html">
+<meta property="og:site_name" content="Cyrus&#39; Blog">
+<meta property="og:description" content="题目给了一个IP和端口，提示使用netcat连接： 1nc 10.214.160.13 11002  连接后显示以下文本 12345678&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;Mom: finish these 10 super simple calculations,     and you will get a flagMelody:">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cyrus28214.top/images/icon512.png">
+<meta property="article:published_time" content="2023-11-02T12:23:24.000Z">
+<meta property="article:modified_time" content="2024-03-29T23:12:01.708Z">
+<meta property="article:author" content="cyrus28214">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="ZJU校巴">
+<meta property="article:tag" content="socket">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyrus28214.top/images/icon512.png"><link rel="shortcut icon" href="/images/icon32.png"><link rel="canonical" href="https://cyrus28214.top/post/33f3f8cb15c3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ZJU校巴-calculator解题记录',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-30 07:12:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/icon512.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/atri.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Cyrus' Blog"><span class="site-name">Cyrus' Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ZJU校巴-calculator解题记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-02T12:23:24.000Z" title="发表于 2023-11-02 20:23:24">2023-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-29T23:12:01.708Z" title="更新于 2024-03-30 07:12:01">2024-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ZJU校巴-calculator解题记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给了一个IP和端口，提示使用netcat连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc 10.214.160.13 11002</span><br></pre></td></tr></table></figure>
+
+<p>连接后显示以下文本</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">================================================</span><br><span class="line">Mom: finish these 10 super simple calculations,</span><br><span class="line">     and you will get a flag</span><br><span class="line">Melody: that&#x27;s easy...</span><br><span class="line">Mom: yep, in 10 seconds</span><br><span class="line">================================================</span><br><span class="line"></span><br><span class="line">1941304599 + 1278737850 + 446307018 + 197487298 + 305703907 + 1425271161 - 806389023 + 1991017585 - 490014616 + 1353220023 = </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>只有10秒的时间要完成10题，显然要编程来完成。但是先尝试一下手动输入答案，把上面的式子拷到Python REPL里，再把答案拷回去，显示“Good, next:”，并展示了下一道题目。10秒时间到，显示“Ah oh, timeout! bye now”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1941304599 + 1278737850 + 446307018 + 197487298 + 305703907 + 1425271161 - 806389023 + 1991017585 - 490014616 + 1353220023 = 7642645802</span><br><span class="line"></span><br><span class="line">Good, next:</span><br><span class="line"></span><br><span class="line">1260408124 + 767415738 + 280455885 - 1070077818 - 646925359 - 1211049829 + 103524629 - 840188120 - 1202673923 + 1399044781 = Ah oh, timeout! bye now</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>根据题目给的hint，使用Python socket编程完成。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket(AF_INET, SOCK_STREAM) <span class="keyword">as</span> s: </span><br><span class="line">    <span class="comment"># 创建一个socket对象，AF_INET设置使用IPv4连接，SOCK_STREAM设置使用TCP连接</span></span><br><span class="line">    s.connect((<span class="string">&#x27;10.214.160.13&#x27;</span>, <span class="number">11002</span>))</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = s.recv(<span class="number">1024</span>).decode() <span class="comment"># 接收信息，最多1024字节</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data: <span class="comment"># 若没有信息，代表连接已关闭</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="built_in">print</span>(data, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^[^A-z]*$&#x27;</span>, data): <span class="comment"># 用正则表达式匹配，如果没有字母，就判断是题目部分</span></span><br><span class="line">            res = <span class="built_in">str</span>(<span class="built_in">eval</span>(data.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">0</span>])) + <span class="string">&#x27;\n&#x27;</span> <span class="comment"># 使用eval计算结果，加上&#x27;\n&#x27;才能模拟手动输入的回车</span></span><br><span class="line">            s.sendall(res.encode()) <span class="comment"># 发送结果</span></span><br><span class="line">            <span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
+
+<p>写出这段代码并不难，但是我调试了很久，原因就在那个<code>&#39;\n&#39;</code>，多次尝试手动输入答案，服务端会给出下一题的题面，但是在脚本中使用sendall之后，并没有任何反馈，排查了各种原因，发现是因为没有回车，所以服务端视作输入还未结束，继续等待输入。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cyrus28214.top">cyrus28214</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cyrus28214.top/post/33f3f8cb15c3/">https://cyrus28214.top/post/33f3f8cb15c3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cyrus28214.top" target="_blank">Cyrus' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/CTF/">CTF</a><a class="post-meta__tags" href="/tags/ZJU%E6%A0%A1%E5%B7%B4/">ZJU校巴</a><a class="post-meta__tags" href="/tags/socket/">socket</a></div><div class="post_share"><div class="social-share" data-image="/images/icon512.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/cccf6f3d6d50/" title="Linux中的三种时间戳：atime、mtime、ctime"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux中的三种时间戳：atime、mtime、ctime</div></div></a></div><div class="next-post pull-right"><a href="/post/8aa5a32761b2/" title="SymPy学习笔记（七）矩阵"><img class="cover" src="https://cyrus28214.top/images/s/6522580fc458853aefd05e8a.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SymPy学习笔记（七）矩阵</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/d157634e8674/" title="ZJU校巴-Reverse1解题记录"><img class="cover" src="https://cyrus28214.top/images/s/6523978ec458853aef40ef58.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-09</div><div class="title">ZJU校巴-Reverse1解题记录</div></div></a></div><div><a href="/post/fda98bd4456d/" title="ZJU校巴-SQL_injection解题记录"><img class="cover" src="https://cyrus28214.top/images/s/6523a836c458853aef484b4c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-14</div><div class="title">ZJU校巴-SQL_injection解题记录</div></div></a></div><div><a href="/post/5638b4fb1b83/" title="剑指 Offer 20. 表示数值的字符串 题解"><img class="cover" src="https://cyrus28214.top/images/s/64c290421ddac507ccd9866b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-27</div><div class="title">剑指 Offer 20. 表示数值的字符串 题解</div></div></a></div><div><a href="/post/ff3f8f51ca30/" title="SymPy学习笔记（一）安装与基本使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">SymPy学习笔记（一）安装与基本使用</div></div></a></div><div><a href="/post/0b3dbf26ccf5/" title="SymPy学习笔记（二）需要避免的坑"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-12</div><div class="title">SymPy学习笔记（二）需要避免的坑</div></div></a></div><div><a href="/post/833ee29c0f6d/" title="SymPy学习笔记（三）输出"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-13</div><div class="title">SymPy学习笔记（三）输出</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/icon512.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cyrus28214</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/images/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/images/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"><img src="https://cyrus28214.top/images/eecs598/ImageNet.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"/></a><div class="content"><a class="title" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4">CS231n/EECS598 学习笔记（一） Lecture 1 - 4</a><time datetime="2024-02-25T12:19:08.000Z" title="发表于 2024-02-25 20:19:08">2024-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS"><img src="/images/emmet.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学会Emmet语法，告别手打HTML和CSS"/></a><div class="content"><a class="title" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS">学会Emmet语法，告别手打HTML和CSS</a><time datetime="2024-02-07T10:50:44.000Z" title="发表于 2024-02-07 18:50:44">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/deeeefb148a9/" title="用Java中的Record（记录类）简化代码">用Java中的Record（记录类）简化代码</a><time datetime="2024-01-22T04:11:16.000Z" title="发表于 2024-01-22 12:11:16">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/303a9aabf405/" title="OSI七层网络模型"><img src="https://cyrus28214.top/images/s/6545ecacc458853aef62eca9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OSI七层网络模型"/></a><div class="content"><a class="title" href="/post/303a9aabf405/" title="OSI七层网络模型">OSI七层网络模型</a><time datetime="2024-01-18T16:00:00.000Z" title="发表于 2024-01-19 00:00:00">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token"><img src="https://cyrus28214.top/images/set-cookie.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="理解Cookie、Session和Token"/></a><div class="content"><a class="title" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token">理解Cookie、Session和Token</a><time datetime="2024-01-17T14:38:04.000Z" title="发表于 2024-01-17 22:38:04">2024-01-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By cyrus28214</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

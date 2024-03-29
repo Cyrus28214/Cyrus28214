@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>奇异值分解（SVD） | Cyrus' Blog</title><meta name="author" content="cyrus28214"><meta name="copyright" content="cyrus28214"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前置知识见另一篇博客：谱定理的证明 奇异值分解（SVD）奇异值分解（singular value decomposition, SVD），说的是任意矩阵$\boldsymbol{A} \in \mathbb{C}^{m\times n}$，都可以分解成以下形式  $$\begin{align*}\boldsymbol{A}&amp;&#x3D;\boldsymbol{u}_1\sigma_1\bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="奇异值分解（SVD）">
+<meta property="og:url" content="https://cyrus28214.top/post/b66a1454c550/index.html">
+<meta property="og:site_name" content="Cyrus&#39; Blog">
+<meta property="og:description" content="前置知识见另一篇博客：谱定理的证明 奇异值分解（SVD）奇异值分解（singular value decomposition, SVD），说的是任意矩阵$\boldsymbol{A} \in \mathbb{C}^{m\times n}$，都可以分解成以下形式  $$\begin{align*}\boldsymbol{A}&amp;&#x3D;\boldsymbol{u}_1\sigma_1\bo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cyrus28214.top/images/SVD.png">
+<meta property="article:published_time" content="2024-01-09T03:13:21.000Z">
+<meta property="article:modified_time" content="2024-03-29T23:12:01.708Z">
+<meta property="article:author" content="cyrus28214">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="线性代数笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyrus28214.top/images/SVD.png"><link rel="shortcut icon" href="/images/icon32.png"><link rel="canonical" href="https://cyrus28214.top/post/b66a1454c550/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '奇异值分解（SVD）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-30 07:12:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/icon512.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cyrus28214.top/images/SVD.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Cyrus' Blog"><span class="site-name">Cyrus' Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">奇异值分解（SVD）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-09T03:13:21.000Z" title="发表于 2024-01-09 11:13:21">2024-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-29T23:12:01.708Z" title="更新于 2024-03-30 07:12:01">2024-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E7%90%86/">数理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="奇异值分解（SVD）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>见另一篇博客：<a href="https://cyrus28214.top/post/48b626d0dc2c/">谱定理的证明</a></p>
+<h2 id="奇异值分解（SVD）"><a href="#奇异值分解（SVD）" class="headerlink" title="奇异值分解（SVD）"></a>奇异值分解（SVD）</h2><p>奇异值分解（singular value decomposition, SVD），说的是任意矩阵$\boldsymbol{A} \in \mathbb{C}^{m\times n}$，都可以分解成以下形式</p>
+<blockquote>
+<p>$$\begin{align*}<br>\boldsymbol{A}&amp;&#x3D;\boldsymbol{u}_1\sigma_1\boldsymbol{v}^* _1 + \boldsymbol{u}_2\sigma_2\boldsymbol{v}^* _2 + \dots + \boldsymbol{u}_r\sigma_r\boldsymbol{v}^*_r \<br>&amp;&#x3D; \left(\begin{array}{c}<br>\boldsymbol{u}_1 &amp; \dots &amp; \boldsymbol{u}_2 &amp; \boldsymbol{u}_m \<br>\end{array}\right)<br>\left(\begin{array}{c}<br>\mathrm{diag}(\sigma_1, \sigma_2, \dots, \sigma_r) &amp; 0\<br>0 &amp; 0\<br>\end{array}\right)<br>\left(\begin{array}{c}<br>\boldsymbol{v}_1^* \<br>\boldsymbol{v}_2^* \<br>\vdots \<br>\boldsymbol{v}_n^*<br>\end{array}\right)\<br>&amp;&#x3D; \boldsymbol{U} \boldsymbol{\Sigma} \boldsymbol{V}^*<br>\end{align*}$$</p>
+</blockquote>
+<p>其中$r$是矩阵$A$的秩，$\boldsymbol{u} _1 , \boldsymbol{u} _2 , \dots , \boldsymbol{u} _m$为$\boldsymbol{A}\boldsymbol{A}^*$的特征向量，$\boldsymbol{v} _1,  \boldsymbol{v} _2,  \dots  \boldsymbol{v} _n$为$\boldsymbol{A}^*\boldsymbol{A}$的特征向量</p>
+<p>$\boldsymbol{U}$和$\boldsymbol{V}$满足</p>
+<p>$$\begin{align*}<br>\boldsymbol{U}^<em>\boldsymbol{U}&amp;&#x3D;\boldsymbol{I}\<br>\boldsymbol{V}^</em>\boldsymbol{V}&amp;&#x3D;\boldsymbol{I}<br>\end{align*}$$</p>
+<p>即$\boldsymbol{U}$和$\boldsymbol{V}$均为酉矩阵。</p>
+<p>且$\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r &gt; \sigma_{r+1} &#x3D; \sigma_{r+2} &#x3D; \cdots &#x3D; \sigma_n &#x3D; 0$。</p>
+<p><img src="https://cyrus28214.top/images/SVD.png" alt="图来自Github仓库The-Art-of-Linear-Algebra"></p>
+<p>奇异值分解表明了任意矩阵都可以拆分成$r$个秩为$1$的矩阵之和。酉矩阵表明$\boldsymbol{u}_1$和$\boldsymbol{v}_1$的长度均为$1$。则$\sigma_i$的大小描述了拆分成的这个矩阵的重要程度，$\sigma_i$越大，说明$\boldsymbol{u}_i\sigma_i\boldsymbol{v}_i^*$这一项越重要。这就揭示了奇异值分解在数据降维、图像压缩、统计分析（如：主成分分析）方面大有用处。</p>
+<span id="more"></span>
+
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>相比于特征值分解，奇异值分解的优势多多。</p>
+<ol>
+<li>对矩阵的要求少<br> 特征值分解要求$\boldsymbol{A}$为方阵，且可对角化。而奇异值分解对$\boldsymbol{A}$没有什么限制。</li>
+<li>稳定性<br> 当$\boldsymbol{A}$中一个值微小的改变时，特征值分解的$\boldsymbol{\Lambda}$可能会发生比较大的改变。但是奇异值分解的$\boldsymbol{\Sigma}$只会发生很小的改变。并且这些改变都发生在靠后的、$\sigma_i$更小的项里。</li>
+</ol>
+<h3 id="截取k项"><a href="#截取k项" class="headerlink" title="截取k项"></a>截取k项</h3><p>由于$\sigma_i$的大小是从大到小排列，因此我们可以只取前面$k$项，得到</p>
+<p>$$\begin{align*}<br>&amp;\boldsymbol{u}_1\sigma_1\boldsymbol{v}^* _1 + \boldsymbol{u}_2\sigma_2\boldsymbol{v}^* _2 + \dots + \boldsymbol{u}_k\sigma_k\boldsymbol{v}^*_k \<br>&amp;&#x3D;\boldsymbol{U}_k \boldsymbol{\Sigma}_k \boldsymbol{V}_k^*<br>\end{align*}$$</p>
+<p>其中$\boldsymbol{U}_k$为$m!\times!k$矩阵，$\boldsymbol{\Sigma}_k$为$k!\times!k$对角阵，$\boldsymbol{V}$为$n!\times!k$矩阵。</p>
+<p>当$k&#x3D;r$时，则</p>
+<p>$$\boldsymbol{A}&#x3D;\boldsymbol{U}_k\boldsymbol{\Sigma}_k \boldsymbol{V}_k^*$$</p>
+<p>仍然成立，此时相当于对$\boldsymbol{A}$进行了无损压缩。</p>
+<p>当$k\lt r$时，$\sigma_1$最小的$r-k$项被舍弃了，但是得到的新矩阵和原来的矩阵仍然是相近的，相当于一个有损压缩。</p>
+<p>$$\boldsymbol{A}\approx\boldsymbol{U}_k\boldsymbol{\Sigma}_k \boldsymbol{V}_k^*$$</p>
+<p>显然，新矩阵的秩为$k$，此时相当于做了一个数据降维。</p>
+<p><img src="https://cyrus28214.top/images/least_square_line.png" alt="数据降维：从二维到一维"></p>
+<h3 id="存在性证明"><a href="#存在性证明" class="headerlink" title="存在性证明"></a>存在性证明</h3><p>引理1：对称矩阵均为半正定矩阵（半正定矩阵：特征值均非负的矩阵）</p>
+<blockquote>
+<p>先证明$\lambda$为实数<br>$$\begin{align*}<br>\boldsymbol{S}^* &amp;&#x3D; \boldsymbol{S} \<br>\boldsymbol{Sx} &amp;&#x3D; \lambda \boldsymbol{x}\<br>\Rightarrow\<br>\boldsymbol{x}^<em>\boldsymbol{S} &amp;&#x3D; \overline{\lambda}\boldsymbol{x}^</em> \<br>\boldsymbol{x}^*(\boldsymbol{S}\boldsymbol{x}) &amp;&#x3D; \overline{\lambda}\boldsymbol{x}^<em>\boldsymbol{x}&#x3D;\overline{\lambda}|\boldsymbol{x}|^2\<br>(\boldsymbol{x}^</em>\boldsymbol{S})\boldsymbol{x}&amp;&#x3D;\lambda \boldsymbol{x}^* \boldsymbol{x} &#x3D; \lambda|\boldsymbol{x}|^2\<br>(\lambda - \overline{\lambda})|\boldsymbol{x}|^2 &amp;&#x3D; 0\<br>\end{align*}$$</p>
+<p>又因为特征向量$\boldsymbol{x}$非零，得$\lambda &#x3D; \overline{\lambda}$，即$\lambda$为实数</p>
+<p>再证明$\lambda$非负</p>
+<p>$$\begin{align*}<br>\boldsymbol{x}^<em>\boldsymbol{A}^</em>\boldsymbol{Ax}&amp;&#x3D;(\overline{\lambda}\boldsymbol{x}^*)(\lambda \boldsymbol{x})\|\boldsymbol{Ax}|^2&amp;&#x3D;|\lambda|^2|\boldsymbol{x}^2|\|\lambda|^2&amp;&#x3D;\frac{|\boldsymbol{Ax}|^2}{|\boldsymbol{x}|^2}\geq 0<br>\end{align*}$$</p>
+</blockquote>
+<p>引理2：$\mathrm{rank}(\boldsymbol{A}^<em>\boldsymbol{A})&#x3D;\mathrm{rank}(\boldsymbol{AA}^</em>)&#x3D;r$</p>
+<blockquote>
+<p>由$\boldsymbol{Ax}&#x3D;0 \Rightarrow \boldsymbol{A}^*\boldsymbol{Ax}&#x3D;0$得</p>
+<p>$$\mathrm{N}(\boldsymbol{A}<br>^<em>\boldsymbol{A}) \subset \mathrm{N}(\boldsymbol{A})$$<br>若$\boldsymbol{A}^</em>\boldsymbol{Ax}&#x3D;0$，则</p>
+<p>$$\boldsymbol{x}^<em>\boldsymbol{A}^</em>\boldsymbol{AX}&#x3D;(\boldsymbol{Ax})^*\boldsymbol{Ax}&#x3D;|\boldsymbol{Ax}|^2&#x3D;0$$</p>
+<p>$$\boldsymbol{Ax}&#x3D;0$$</p>
+<p>所以</p>
+<p>$$\mathrm{N}(\boldsymbol{A}) \subset \mathrm{N}(\boldsymbol{A}^*\boldsymbol{A})$$</p>
+<p>有</p>
+<p>$$\begin{align*}\mathrm{N}(\boldsymbol{A})&amp;&#x3D;\mathrm{N}(\boldsymbol{A}^<em>\boldsymbol{A})\\dim\mathrm{N}(\boldsymbol{A})&amp;&#x3D;\dim\mathrm{N}(\boldsymbol{A}^</em>\boldsymbol{A})\n-\mathrm{rank}(\boldsymbol{A})&amp;&#x3D;n-\mathrm{rank}(\boldsymbol{A}^<em>\boldsymbol{A})\\mathrm{rank}(\boldsymbol{A})&amp;&#x3D;\mathrm{rank}(\boldsymbol{A}^</em>\boldsymbol{A})<br>\end{align*}$$</p>
+<p>同理可证明$\mathrm{rank}(\boldsymbol{A}^*)&#x3D;\mathrm{rank}(\boldsymbol{AA}^*)$，故原式成立</p>
+</blockquote>
+<p>引理3：$\boldsymbol{A}^<em>\boldsymbol{A}$和$\boldsymbol{AA}^</em>$均有$r$个相同的正特征值。</p>
+<blockquote>
+<p>首先证明均有$r$个特征值：</p>
+<p>由于$\boldsymbol{A}^*\boldsymbol{A}$为对称矩阵，由于对称矩阵一定是正规矩阵，由谱定理有</p>
+<p>$$\boldsymbol{A}^<em>\boldsymbol{A}&#x3D;\boldsymbol{U\Lambda}\boldsymbol{U}^</em>$$</p>
+<p>由引理1，特征值不可能为负。且$\boldsymbol{\Lambda}$中非零元素个数其实就是$\mathrm{rank}(\boldsymbol{\Lambda})$</p>
+<p>则正特征值个数$\mathrm{rank}(\boldsymbol{\Lambda})&#x3D;\mathrm{rank}(\boldsymbol{A}^<em>\boldsymbol{A})$&gt;<br>对$\boldsymbol{AA}^</em>$同理</p>
+<hr>
+<p>再证明$\boldsymbol{A}^<em>\boldsymbol{A}$的正特征值也是$\boldsymbol{AA}^</em>$的正特征值：</p>
+<p>$$\begin{align*}<br>\boldsymbol{A}^<em>\boldsymbol{Ax}&amp;&#x3D;\lambda\boldsymbol{x}\<br>\boldsymbol{A}\boldsymbol{A}^</em>\boldsymbol{Ax}&amp;&#x3D;\lambda\boldsymbol{Ax}\<br>\boldsymbol{A}\boldsymbol{A}^*(\boldsymbol{Ax})&amp;&#x3D;\lambda(\boldsymbol{Ax})\<br>\end{align*}$$</p>
+<p>由$\lambda \neq 0$得$\boldsymbol{Ax}\neq 0$，故$\boldsymbol{Ax}$是$\boldsymbol{A}^*\boldsymbol{A}$的一个特征向量，对应的特征值为$\lambda$。</p>
+<p>反之可证$\boldsymbol{A}\boldsymbol{A}$的正特征值也是$\boldsymbol{A}^*\boldsymbol{A}$的特征值，则两矩阵拥有相同的一组正特征值。</p>
+</blockquote>
+<p>由引理3，我们设这一组相同的特征值为$\lambda_i\quad(i \leq r)$并从大到小排列，$\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_r &gt; \lambda_{r+1} &#x3D; \lambda_{r+2} &#x3D; \dots &#x3D; \lambda_m &#x3D; 0$。</p>
+<p>证明是构造性的</p>
+<p>对$\boldsymbol{A}^*\boldsymbol{A}$谱分解可以求出$\boldsymbol{V}$和$\lambda_i$，设$\boldsymbol{V}$的第$i$列为$\boldsymbol{v}_i$，对应特征值$\lambda_i$。</p>
+<p>设$\boldsymbol{V}&#x3D;\left(\begin{array}{c}<br>\boldsymbol{V}_r &amp; \boldsymbol{V}_0 \<br>\end{array}\right)$，前$r$列为$\boldsymbol{V}_r$，剩下$m-r$列为$\boldsymbol{V}_0$。</p>
+<p>$\boldsymbol{U}&#x3D;\left(\begin{array}{c}<br>\boldsymbol{U}_r &amp; \boldsymbol{U}_0 \<br>\end{array}\right)$，前$r$列为$\boldsymbol{U}_r$，剩下$n-r$列为$\boldsymbol{U}_0$。</p>
+<p>当$i&gt;r$时，由$\boldsymbol{A}^<em>\boldsymbol{Av}_i&#x3D;0$两边左乘以$\boldsymbol{v}_i^</em>$，易得$\boldsymbol{Av}_i&#x3D;0$，故有$\boldsymbol{AV}_0 &#x3D; 0$。</p>
+<p>等价变换原式</p>
+<p>$$\begin{align*}<br>\boldsymbol{A} &amp;&#x3D; \boldsymbol{U\Sigma V}^<em>\<br>\boldsymbol{AV} &amp;&#x3D; \boldsymbol{U \Sigma}\<br>\boldsymbol{A}\left(\begin{array}{c}<br>\boldsymbol{V}_r\<br>\boldsymbol{V}_0\<br>\end{array}\right)&amp;&#x3D;\left(\begin{array}{c}<br>\boldsymbol{U}_r &amp; \boldsymbol{U}_0\<br>\end{array}\right)<br>\left(\begin{array}{c}<br>\boldsymbol{\Sigma}_r &amp; 0 \<br>0 &amp; 0 \<br>\end{array}\right) \tag{1}\<br>\boldsymbol{AV}_r &amp;&#x3D; \boldsymbol{U}_r \boldsymbol{\Sigma}_r \tag{2}\<br>\end{align</em>}$$</p>
+<p>再令</p>
+<p>$$\begin{align*}<br>\sigma_i &amp;&#x3D; \sqrt{\lambda_i}\<br>\boldsymbol{\Sigma}_r &amp;&#x3D; \mathrm{diag}(\sigma _1,  \sigma _2,  \dots,  \sigma _r)\<br>\end{align*}$$</p>
+<p>$\boldsymbol{V}_r$、$\boldsymbol{\Sigma}_r$均已构造出来，则只需构造符合$(1)$的$\boldsymbol{U}_r$，且$\boldsymbol{u}_i$（$i\leq r$）满足以下条件：</p>
+<ol>
+<li>$\boldsymbol{u}_i$为单位向量。</li>
+<li>$\boldsymbol{u}_i \perp \boldsymbol{u}_j$（$i \neq j$）。</li>
+<li>$\boldsymbol{u}_i$是$\boldsymbol{AA}^*$的特征向量。</li>
+</ol>
+<p>令$\boldsymbol{u}_i&#x3D;\frac{1}{\sigma_i}\boldsymbol{Av}_i$，下面证明其满足三个条件</p>
+<h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><p>$$\begin{align*}<br>\boldsymbol{u}_i^<em>\boldsymbol{u}_i &amp;&#x3D; \frac{1}{\sigma_i^2}\boldsymbol{v}_i^</em>\boldsymbol{A}^<em>\boldsymbol{Av}_i\<br>&amp;&#x3D;\frac{1}{\lambda_i}\boldsymbol{v}_i^</em>\lambda_i \boldsymbol{v}_i\<br>&amp;&#x3D;1\<br>\end{align*}$$</p>
+<h5 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h5><p>$$\begin{align*}<br>\newcommand\ui{\boldsymbol{u}_i}<br>\boldsymbol{u}_i^<em>\boldsymbol{u}_j &amp;&#x3D; \frac{1}{\sigma_i\sigma_j}\boldsymbol{v}_i^</em>\boldsymbol{A}^<em>\boldsymbol{Av}_j\<br>&amp;&#x3D;\frac{1}{\sigma_i\sigma_j}\boldsymbol{v}_i^</em>\boldsymbol{v}_j\<br>\end{align*}$$</p>
+<p>由$\boldsymbol{v}_i$和$\boldsymbol{v}_j$正交知上式等于$0$，即$\boldsymbol{u}_i$和$\boldsymbol{u}_j$也正交。</p>
+<h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4><p>$$\begin{align*}<br>\boldsymbol{AA}^<em>\boldsymbol{u}_i &amp;&#x3D; \frac{1}{\sigma_i}\boldsymbol{AA}^</em>\boldsymbol{A}\boldsymbol{v}_i\<br>&amp;&#x3D; \sigma_i\boldsymbol{Av}_i\<br>&amp;&#x3D;\lambda_i \boldsymbol{u}_i\<br>\end{align*}$$</p>
+<p>证毕。</p>
+<h3 id="与四个基本子空间的关系"><a href="#与四个基本子空间的关系" class="headerlink" title="与四个基本子空间的关系"></a>与四个基本子空间的关系</h3><p>$\boldsymbol{V}_r&#x3D;(\boldsymbol{v} _1,  \boldsymbol{v} _2,  \dots,  \boldsymbol{v} _n)$是$\boldsymbol{A}$的行空间$\mathrm{C}(\boldsymbol{A}^*)$的一组标准正交基；<br>$\boldsymbol{V}_0&#x3D;(\boldsymbol{v} _r,  \boldsymbol{v} _{r+1},  \dots,  \boldsymbol{v} _n)$是$\boldsymbol{A}$的零空间$\mathrm{N}(\boldsymbol{A})$的一组标准正交基；<br>$\boldsymbol{U}_r&#x3D;(\boldsymbol{u} _1,  \boldsymbol{u} _2,  \dots,  \boldsymbol{u} _u)$是$\boldsymbol{A}$的列空间$\mathrm{C}(\boldsymbol{A})$的一组标准正交基；<br>$\boldsymbol{U}_0&#x3D;(\boldsymbol{u} _r,  \boldsymbol{u} _{r+1},  \dots,  \boldsymbol{u} _n)$是$\boldsymbol{A}$的左零空间$\mathrm{N}(\boldsymbol{A}^*)$的一组标准正交基。</p>
+<p>线性代数中非常重要的子空间，和SVD就这样巧妙地联系在一起了，由$\boldsymbol{V}^<em>\boldsymbol{V} &#x3D; \boldsymbol{I}$和$\boldsymbol{U}^</em>\boldsymbol{U} &#x3D; \boldsymbol{I}$，又能再次验证四个基本子空间的两组垂直关系：</p>
+<p>$$\begin{align*}<br>\mathrm{C}(\boldsymbol{A}) \perp \mathrm{N}(\boldsymbol{A}^*)\<br>\mathrm{C}(\boldsymbol{A}^*) \perp \mathrm{N}(\boldsymbol{A})\<br>\end{align*}$$</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>为了结论的泛用性，上面的证明是在复数域$\mathbb{C}$下进行的，当然换成实数域也是同理的，只要将$\boldsymbol{A}^*$换成$\boldsymbol{A}^\mathrm{T}$即可。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Introduction to Linear Algebra, 5th edition, by Gilbert Strang</p>
+<p><a target="_blank" rel="noopener" href="https://inst.eecs.berkeley.edu/~ee127/sp21/livebook/thm_sed.html">https://inst.eecs.berkeley.edu/~ee127&#x2F;sp21&#x2F;livebook&#x2F;thm_sed.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cyrus28214.top">cyrus28214</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cyrus28214.top/post/b66a1454c550/">https://cyrus28214.top/post/b66a1454c550/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cyrus28214.top" target="_blank">Cyrus' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a><a class="post-meta__tags" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a><a class="post-meta__tags" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/">线性代数笔记</a></div><div class="post_share"><div class="social-share" data-image="https://cyrus28214.top/images/SVD.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/ffabb25ef332/" title="基于SVD的图像压缩算法"><img class="cover" src="https://cyrus28214.top/images/SVD_image.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">基于SVD的图像压缩算法</div></div></a></div><div class="next-post pull-right"><a href="/post/48b626d0dc2c/" title="谱定理（Spectral Theorem）的证明"><img class="cover" src="https://cyrus28214.top/images/eigvalue_decomposition.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">谱定理（Spectral Theorem）的证明</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/bb0633eb563b/" title="线性代数中的投影"><img class="cover" src="https://cyrus28214.top/images/Projection.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-18</div><div class="title">线性代数中的投影</div></div></a></div><div><a href="/post/48b626d0dc2c/" title="谱定理（Spectral Theorem）的证明"><img class="cover" src="https://cyrus28214.top/images/eigvalue_decomposition.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-22</div><div class="title">谱定理（Spectral Theorem）的证明</div></div></a></div><div><a href="/post/8aa5a32761b2/" title="SymPy学习笔记（七）矩阵"><img class="cover" src="https://cyrus28214.top/images/s/6522580fc458853aefd05e8a.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-02</div><div class="title">SymPy学习笔记（七）矩阵</div></div></a></div><div><a href="/post/5941ab677246/" title="半加器、全加器与超前进位加法器"><img class="cover" src="https://cyrus28214.top/images/s/649e549d1ddac507cce6a707.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-30</div><div class="title">半加器、全加器与超前进位加法器</div></div></a></div><div><a href="/post/0e8d2ef41193/" title="SQL学习笔记（一）安装SQLite"><img class="cover" src="https://cyrus28214.top/images/s/651985d9c458853aefbe98ea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-02</div><div class="title">SQL学习笔记（一）安装SQLite</div></div></a></div><div><a href="/post/3f6aa83f99ff/" title="SQL学习笔记（二）创建一个表"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-02</div><div class="title">SQL学习笔记（二）创建一个表</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/icon512.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cyrus28214</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/images/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/images/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3%EF%BC%88SVD%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">奇异值分解（SVD）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">2.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E5%8F%96k%E9%A1%B9"><span class="toc-number">2.2.</span> <span class="toc-text">截取k项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E6%80%A7%E8%AF%81%E6%98%8E"><span class="toc-number">2.3.</span> <span class="toc-text">存在性证明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">2.</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3"><span class="toc-number">2.3.2.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.4.</span> <span class="toc-text">与四个基本子空间的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">2.5.</span> <span class="toc-text">补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"><img src="https://cyrus28214.top/images/eecs598/ImageNet.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"/></a><div class="content"><a class="title" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4">CS231n/EECS598 学习笔记（一） Lecture 1 - 4</a><time datetime="2024-02-25T12:19:08.000Z" title="发表于 2024-02-25 20:19:08">2024-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS"><img src="/images/emmet.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学会Emmet语法，告别手打HTML和CSS"/></a><div class="content"><a class="title" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS">学会Emmet语法，告别手打HTML和CSS</a><time datetime="2024-02-07T10:50:44.000Z" title="发表于 2024-02-07 18:50:44">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/deeeefb148a9/" title="用Java中的Record（记录类）简化代码">用Java中的Record（记录类）简化代码</a><time datetime="2024-01-22T04:11:16.000Z" title="发表于 2024-01-22 12:11:16">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/303a9aabf405/" title="OSI七层网络模型"><img src="https://cyrus28214.top/images/s/6545ecacc458853aef62eca9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OSI七层网络模型"/></a><div class="content"><a class="title" href="/post/303a9aabf405/" title="OSI七层网络模型">OSI七层网络模型</a><time datetime="2024-01-18T16:00:00.000Z" title="发表于 2024-01-19 00:00:00">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token"><img src="https://cyrus28214.top/images/set-cookie.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="理解Cookie、Session和Token"/></a><div class="content"><a class="title" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token">理解Cookie、Session和Token</a><time datetime="2024-01-17T14:38:04.000Z" title="发表于 2024-01-17 22:38:04">2024-01-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By cyrus28214</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

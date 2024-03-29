@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Cyrus' Blog - Think twice, code once.</title><meta name="author" content="cyrus28214"><meta name="copyright" content="cyrus28214"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Cyrus&#39; Blog">
+<meta property="og:url" content="https://cyrus28214.top/index.html">
+<meta property="og:site_name" content="Cyrus&#39; Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cyrus28214.top/images/icon512.png">
+<meta property="article:author" content="cyrus28214">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="个人博客">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyrus28214.top/images/icon512.png"><link rel="shortcut icon" href="/images/icon32.png"><link rel="canonical" href="https://cyrus28214.top/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cyrus\' Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-30 07:12:23'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/icon512.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/images/atri.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Cyrus' Blog"><span class="site-name">Cyrus' Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Cyrus' Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/images/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/images/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"><img class="post-bg" src="https://cyrus28214.top/images/eecs598/ImageNet.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"></a></div><div class="recent-post-info"><a class="article-title" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4">CS231n/EECS598 学习笔记（一） Lecture 1 - 4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-25T12:19:08.000Z" title="发表于 2024-02-25 20:19:08">2024-02-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DS-AI/">DS&amp;AI</a></span></div><div class="content">课程介绍Deep Learning for Computer Vision是一门介绍深度学习在计算机视觉中的应用的课程，本课程中介绍了如何实现、训练和调试自己的神经网络，并详细展示了计算机视觉的前沿研究。课程中还包括一些训练和微调视觉识别任务网络的实用工程技巧。CS231n是斯坦福大学的版本，由于这门课程在网络上最新的版本是2017年比较早，因此我选择了教学大纲基本相同，但有额外扩充内容的另一门课程，密歇根大学的EECS498&#x2F;598，这门课在网上公开的最新版本是FA2019。
+课程相关链接：
+https://web.archive.org/web/20230328031120/https://web.eecs.umich.edu/~justincj&#x2F;teaching&#x2F;eecs498&#x2F;FA2020&#x2F;
+http://cs231n.stanford.edu/schedule.html
+
+
+课后作业答案下面是我的作业解答链接
+https://github.com/cyrus28214/EECS598-solutions
+Lecture 1对计 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS"><img class="post-bg" src="/images/emmet.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学会Emmet语法，告别手打HTML和CSS"></a></div><div class="recent-post-info"><a class="article-title" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS">学会Emmet语法，告别手打HTML和CSS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-07T10:50:44.000Z" title="发表于 2024-02-07 18:50:44">2024-02-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="content">前言有时候，写前端代码更像是一种体力活。在前端的世界，你经常需要写出重复嵌套的HTML元素，冗长的CSS样式。俗话说：不会偷懒的程序员不是好程序员，如果你还在手写HTML和CSS代码，那你必须要知道Emmet，这个可以显著加快你的代码速度的插件。
+介绍Emmet是一个可以极大加速web开发工作流的工具。Emmet为HTML&#x2F;XML和CSS设计了一套便于记忆和使用的缩写，你只需要键入这些缩写，就可以自动展开成相应的代码。
+
+
+
+安装Emmet支持几乎所有的编辑器。包括VSCode、Sublime、Atom、WebStorm、Vim、Emacs等等。
+如果你是用的是宇宙第一编辑器——VSCode，那么你不需要做任何事，因为VSCode默认集成了Emmet，不需要安装任何VSCode扩展。Emmet功能会在html、xml、css、sass、php等类型的文件中启用。详见https://code.visualstudio.com/docs/editor/emmet#_how-to-expand-emmet-abbreviations-and-snippets
+如果你是其他编辑器的用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/deeeefb148a9/" title="用Java中的Record（记录类）简化代码">用Java中的Record（记录类）简化代码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-22T04:11:16.000Z" title="发表于 2024-01-22 12:11:16">2024-01-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">简介Record是从Java 14开始引入的新特性，Record提供了一种简洁高效的方式来创建不可变类。
+引入使用Java进行开发的时候，程序员经常会创建一些不可变类专门用于承载数据（也就是MVC模型中的model），这些类可能涉及大量的样板代码，包括：
+
+大量的private、final、public关键字
+每个字段的getter
+重写equals()、hashCode()、toString()方法
+
+
+
+例如以下代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657package example;import java.util.Objects;public final class Person &#123;    private final Long id;    private final String name;    private final Integer age;    // 构造函数    public P ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/303a9aabf405/" title="OSI七层网络模型"><img class="post-bg" src="https://cyrus28214.top/images/s/6545ecacc458853aef62eca9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OSI七层网络模型"></a></div><div class="recent-post-info"><a class="article-title" href="/post/303a9aabf405/" title="OSI七层网络模型">OSI七层网络模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-18T16:00:00.000Z" title="发表于 2024-01-19 00:00:00">2024-01-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">概念OSI模型（Open Systems Interconnection model）是由国际标准化组织（ISO）制定的一种用将各个计算机连接成网络的标准框架。
+OSI模型将通信系统中的数据流划分成8层，从上至下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。每一层都在下一层的基础上构建，为其上一层提供功能。从一台计算机发送信息到另一台计算机时，这些信息会从N层开始，向N-1层传递，直到物理层，使用物理的线路进行传输，传输到另一台计算机后，再从低至高解析数据，直到第N层，再交给某个应用程序处理。
+
+
+
+OSI是一种概念模型，这意味着OSI并没有规定具体的实现，而只是描述了一些概念，用来为实际的标准制定和开发提供参考。也就是说，对于同一层可能有多种不同的协议来实现。
+应用层（Application Layer）应用层是最贴近用户的一层，应用程序通过网络传输数据，根据程序的功能，处理数据、为用户提供图形界面、发送数据等。直接为网络应用提供服务。
+具体的应用举例：浏览器、QQ
+应用层的网络协议有：HTTP（上网协议）、FTP（文件传输协议）、SMTP（电子邮件传输协议）等。 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/7e6546e6c327/" title="理解Cookie、Session和Token"><img class="post-bg" src="https://cyrus28214.top/images/set-cookie.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="理解Cookie、Session和Token"></a></div><div class="recent-post-info"><a class="article-title" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token">理解Cookie、Session和Token</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-17T14:38:04.000Z" title="发表于 2024-01-17 22:38:04">2024-01-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">身份验证Web应用经常需要对用户进行身份验证，才能判定用户的权限，决定用户能访问哪些资源。比如只有你才能看到自己的私密QQ相册，比如只有老师才能看到智学网中全班同学的成绩，同学只能看到自己的。
+身份验证需要在服务器和客户端之间交换和保存数据，比如当你登录了一个网站，你并不希望下次登录的时候还要输入账号密码，需要建立一些机制，保存这个登录的状态，告诉服务器“是我，我不久前刚刚登录过”。于是就有了以下这些概念。
+
+Cookiecookie，就是曲奇饼干一小段储存在客户端（浏览器）的数据。cookie可以用来保存状态，不仅仅是账户的登录状态，也可能包括一些设置、浏览记录等。
+cookie是由服务器生成，储存在客户端的数据。目的是为了保存一些状态，让服务器知道这次请求和之前的请求发送自相同的客户端。
+机制当服务器想要向客户端添加cookie的时候，服务器会在response headers中添加Set-Cookie项，然后浏览器会保存Set-Cookie中的值。之后每次访问相同站点的时候，都会带上相同的数据，放在Cookie中。当然，服务器那里也要保存一份cookie，用于比对验证。
+用图片表 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/ffabb25ef332/" title="基于SVD的图像压缩算法"><img class="post-bg" src="https://cyrus28214.top/images/SVD_image.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于SVD的图像压缩算法"></a></div><div class="recent-post-info"><a class="article-title" href="/post/ffabb25ef332/" title="基于SVD的图像压缩算法">基于SVD的图像压缩算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-11T15:11:54.000Z" title="发表于 2024-01-11 23:11:54">2024-01-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">理论基础详见奇异值分解
+奇异值分解（SVD）可以将任意矩阵分解为$\boldsymbol{A}&#x3D;\boldsymbol{u}_1\sigma_1\boldsymbol{v}^* _1 + \boldsymbol{u}_2\sigma_2\boldsymbol{v}^* _2 + \dots + \boldsymbol{u}_r\sigma_r\boldsymbol{v}^*_r&#x3D;\boldsymbol{U \Sigma V}^\mathrm{T}$的形式。并且越靠近后面的项越不重要，去除它们就可以用更小的空间储存一个与原来矩阵相近的矩阵。
+若将图像看作RGB三通道的三个矩阵，对图像SVD并保留前$k$项，就可以实现图像压缩。
+效果展示&amp;分析
+可以看到，当压缩率在0.5以上时，图像基本保持原本的细节，压缩率0.5以下时，逐渐丢失了细节。
+
+
+画出$\sigma_k$曲线。可以看到$\sigma_k$随$k$的增加先急剧降低，后缓慢降低。
+
+代码GitHub项目地址
+123456789101112131415161718192021222324252627282 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/b66a1454c550/" title="奇异值分解（SVD）"><img class="post-bg" src="https://cyrus28214.top/images/SVD.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="奇异值分解（SVD）"></a></div><div class="recent-post-info"><a class="article-title" href="/post/b66a1454c550/" title="奇异值分解（SVD）">奇异值分解（SVD）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T03:13:21.000Z" title="发表于 2024-01-09 11:13:21">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E7%90%86/">数理</a></span></div><div class="content">前置知识见另一篇博客：谱定理的证明
+奇异值分解（SVD）奇异值分解（singular value decomposition, SVD），说的是任意矩阵$\boldsymbol{A} \in \mathbb{C}^{m\times n}$，都可以分解成以下形式
+
+$$\begin{align*}\boldsymbol{A}&amp;&#x3D;\boldsymbol{u}_1\sigma_1\boldsymbol{v}^* _1 + \boldsymbol{u}_2\sigma_2\boldsymbol{v}^* _2 + \dots + \boldsymbol{u}_r\sigma_r\boldsymbol{v}^*_r \&amp;&#x3D; \left(\begin{array}{c}\boldsymbol{u}_1 &amp; \dots &amp; \boldsymbol{u}_2 &amp; \boldsymbol{u}_m \\end{array}\right)\left(\begin{array}{c}\mathrm{diag}(\sigma_1, \sigma_2, ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/48b626d0dc2c/" title="谱定理（Spectral Theorem）的证明"><img class="post-bg" src="https://cyrus28214.top/images/eigvalue_decomposition.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="谱定理（Spectral Theorem）的证明"></a></div><div class="recent-post-info"><a class="article-title" href="/post/48b626d0dc2c/" title="谱定理（Spectral Theorem）的证明">谱定理（Spectral Theorem）的证明</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-22T02:23:24.000Z" title="发表于 2023-12-22 10:23:24">2023-12-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E7%90%86/">数理</a></span></div><div class="content">回顾特征值分解&#x2F;对角化定义对于$n \times n$的方阵$\boldsymbol{A}$，如果有下面的等式：
+$$\boldsymbol{Ax}&#x3D;\lambda \boldsymbol{x}$$
+其中$\boldsymbol{x}$为非零向量。
+我们就称$\boldsymbol{x}$是$\boldsymbol{x}$的一个特征向量（eigenvector），$\lambda$是$\boldsymbol{x}$的一个特征值（eigenvalue）。
+求解$$\begin{align*}\boldsymbol{Ax} &amp;&#x3D; \lambda \boldsymbol{Ix} \(\boldsymbol{A} - \lambda \boldsymbol{I})\boldsymbol{x} &amp;&#x3D; \boldsymbol{0} \\det(\boldsymbol{A} - \lambda \boldsymbol{I}) &amp;&#x3D; 0 \\end{align*}$$
+特征值可以通过解特征根方程$\det(\boldsymbol ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/bb0633eb563b/" title="线性代数中的投影"><img class="post-bg" src="https://cyrus28214.top/images/Projection.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="线性代数中的投影"></a></div><div class="recent-post-info"><a class="article-title" href="/post/bb0633eb563b/" title="线性代数中的投影">线性代数中的投影</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T01:45:12.000Z" title="发表于 2023-12-18 09:45:12">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E7%90%86/">数理</a></span></div><div class="content">投影矩阵的推导假设我们想把一个向量$\boldsymbol{b}$投影到线性空间$\mathcal{S}$中，应该怎么做呢。
+设投影后的向量为$\boldsymbol{p}$，则有$\boldsymbol{p}\in \mathcal{S}$，设误差向量（error vector）$\boldsymbol{e}&#x3D;\boldsymbol{b}-\boldsymbol{p}$，则$\boldsymbol{e}$应与$\mathcal{S}$正交。投影就是将向量分为两部分$\boldsymbol{b}&#x3D;\boldsymbol{p}+\boldsymbol{e}$，一部分在$\mathcal{S}$中，另一部分与$\mathcal{S}$正交，然后取其中的$\boldsymbol{p}$。也可以用图像直观理解：
+
+
+
+要求得$\boldsymbol{p}$，只需要将$\boldsymbol{p}\in \mathcal{S};\mathrm{(1)}$和$\boldsymbol{e}\perp \mathcal{S};\mathrm{(2)}$这两个条件翻译成线性代数的语言 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/273aaceb4fa7/" title="NumPy学习笔记"><img class="post-bg" src="https://cyrus28214.top/images/np_multiply_broadcasting.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NumPy学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/post/273aaceb4fa7/" title="NumPy学习笔记">NumPy学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-06T04:16:40.000Z" title="发表于 2023-12-06 12:16:40">2023-12-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DS-AI/">DS&amp;AI</a></span></div><div class="content">NumPy是一个广泛使用的Python库，NumPy是Numerical Python的缩写，用于多维数组的计算，并且支持对多维数组进行各种数学处理，同时保持非常高的性能。Pandas, SciPy, Matplotlib, scikit-learn等一系列库都使用了NumPy提供的多维数组。
+安装使用Anaconda（推荐）推荐使用Anaconda安装NumPy
+1conda install numpy
+
+
+
+使用pip1pip install numpy
+
+引入NumPy1import numpy as np
+
+将NumPy重命名为np不仅能让代码简短，还是一种约定俗成的写法，建议任何时候都这么写。
+NumPy中的数组和Python原生的list有什么区别？
+
+
+不同点
+NumPy array
+Python list
+
+
+
+元素类型
+数组的所有元素必须拥有相同类型
+数组的元素可以有不同的类型
+
+
+内存占有
+内存占用少
+有额外的内存占用
+
+
+性能表现
+速度快
+速度较慢
+
+
+数组数组是NumPy的核心。在NumPy中，数组被称作ndarray，是多维数组（N-Dimensional A ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/icon512.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cyrus28214</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">90</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/images/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/images/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"><img src="https://cyrus28214.top/images/eecs598/ImageNet.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS231n/EECS598 学习笔记（一） Lecture 1 - 4"/></a><div class="content"><a class="title" href="/post/02bfece66015/" title="CS231n/EECS598 学习笔记（一） Lecture 1 - 4">CS231n/EECS598 学习笔记（一） Lecture 1 - 4</a><time datetime="2024-02-25T12:19:08.000Z" title="发表于 2024-02-25 20:19:08">2024-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS"><img src="/images/emmet.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学会Emmet语法，告别手打HTML和CSS"/></a><div class="content"><a class="title" href="/post/29fec64214ce/" title="学会Emmet语法，告别手打HTML和CSS">学会Emmet语法，告别手打HTML和CSS</a><time datetime="2024-02-07T10:50:44.000Z" title="发表于 2024-02-07 18:50:44">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/deeeefb148a9/" title="用Java中的Record（记录类）简化代码">用Java中的Record（记录类）简化代码</a><time datetime="2024-01-22T04:11:16.000Z" title="发表于 2024-01-22 12:11:16">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/303a9aabf405/" title="OSI七层网络模型"><img src="https://cyrus28214.top/images/s/6545ecacc458853aef62eca9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OSI七层网络模型"/></a><div class="content"><a class="title" href="/post/303a9aabf405/" title="OSI七层网络模型">OSI七层网络模型</a><time datetime="2024-01-18T16:00:00.000Z" title="发表于 2024-01-19 00:00:00">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token"><img src="https://cyrus28214.top/images/set-cookie.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="理解Cookie、Session和Token"/></a><div class="content"><a class="title" href="/post/7e6546e6c327/" title="理解Cookie、Session和Token">理解Cookie、Session和Token</a><time datetime="2024-01-17T14:38:04.000Z" title="发表于 2024-01-17 22:38:04">2024-01-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DS-AI/"><span class="card-category-list-name">DS&AI</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">信息安全</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">学习</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E7%90%86/"><span class="card-category-list-name">数理</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/"><span class="card-category-list-name">生活</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"><span class="card-category-list-name">科学计算</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CTF/" style="font-size: 1.21em; color: #999ea4">CTF</a> <a href="/tags/%E6%8E%A8%E8%8D%90/" style="font-size: 1.1em; color: #999">推荐</a> <a href="/tags/SQL/" style="font-size: 1.44em; color: #99a7ba">SQL</a> <a href="/tags/C-C/" style="font-size: 1.39em; color: #99a4b4">C/C++</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">游戏开发</a> <a href="/tags/Java/" style="font-size: 1.1em; color: #999">Java</a> <a href="/tags/socket/" style="font-size: 1.1em; color: #999">socket</a> <a href="/tags/SymPy/" style="font-size: 1.39em; color: #99a4b4">SymPy</a> <a href="/tags/MIT-Missing-Semester%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.16em; color: #999b9e">MIT Missing Semester学习笔记</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 1.1em; color: #999">编程语言</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0/" style="font-size: 1.21em; color: #999ea4">线性代数笔记</a> <a href="/tags/Floyd%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">Floyd算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.27em; color: #99a0a9">题解</a> <a href="/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">程序设计</a> <a href="/tags/ZJU%E6%A0%A1%E5%B7%B4/" style="font-size: 1.21em; color: #999ea4">ZJU校巴</a> <a href="/tags/SQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.44em; color: #99a7ba">SQL学习笔记</a> <a href="/tags/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" style="font-size: 1.1em; color: #999">数字电路</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">总结</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/Bash/" style="font-size: 1.16em; color: #999b9e">Bash</a> <a href="/tags/NumPy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">NumPy学习笔记</a> <a href="/tags/Cookie/" style="font-size: 1.1em; color: #999">Cookie</a> <a href="/tags/RSA/" style="font-size: 1.1em; color: #999">RSA</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.16em; color: #999b9e">操作系统</a> <a href="/tags/CS50/" style="font-size: 1.1em; color: #999">CS50</a> <a href="/tags/XPath/" style="font-size: 1.16em; color: #999b9e">XPath</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">编译原理</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 1.1em; color: #999">逆向工程</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.16em; color: #999b9e">环境配置</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">优化</a> <a href="/tags/Jupyter/" style="font-size: 1.1em; color: #999">Jupyter</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 1.1em; color: #999">字符串</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 1.1em; color: #999">命令行</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 1.33em; color: #99a2af">线性代数</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.33em; color: #99a2af">算法</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/%E5%AE%9E%E7%8E%B0%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 1.21em; color: #999ea4">实现常用排序算法</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">23</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">55</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-06-28T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-29T23:12:23.724Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By cyrus28214</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["Think twice, code once."])
+  } else {
+    document.getElementById("subtitle").textContent = "Think twice, code once."
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
