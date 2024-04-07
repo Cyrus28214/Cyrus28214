@@ -4528,6 +4528,7 @@ x_{t+1} &amp;= x_t + v_{t+1}
 <p>在实际应用中，我们可能希望日志同时满足人和机器的阅读需求：将日志以JSON格式输出到日志文件，方便系统的日志分析工具处理；同时，为了开发者的方便，也需要将日志以文本格式输出到标准错误流（stderr）。</p>
 <p>那么，如何同时实现两种格式的日志输出？</p>
 <h2 id="解决方案">解决方案</h2>
+<p>这里不得不吐槽，golang的生态并不成熟，关于这个问题的实现方法网上很少有相关资料</p>
 <h3 id="hook">Hook</h3>
 <p>logrus 提供Hook功能 ，它允许在日志事件发生时，执行特定操作。我们可以使用 Hook 来实现我们的需求。</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// A hook to be fired when logging on the logging levels returned from</span></span><br><span class="line"><span class="comment">// `Levels()` on your implementation of the interface. Note that this is not</span></span><br><span class="line"><span class="comment">// fired in a goroutine or a channel with workers, you should handle such</span></span><br><span class="line"><span class="comment">// functionality yourself if your call is non-blocking and you don&#x27;t wish for</span></span><br><span class="line"><span class="comment">// the logging calls for levels returned from `Levels()` to block.</span></span><br><span class="line"><span class="keyword">type</span> Hook <span class="keyword">interface</span> &#123;</span><br><span class="line">	Levels() []Level</span><br><span class="line">	Fire(*Entry) <span class="type">error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
