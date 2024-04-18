@@ -4557,7 +4557,7 @@ x_{t+1} &amp;= x_t + v_{t+1}
     <title>微分形式不变性以及dy，△y和f&#39;(x)的区别和联系</title>
     <url>/post/50f1c761afc9/</url>
     <content><![CDATA[<p><span style="display: none">初学微积分的时候，看到课本上证明所谓的“一阶微分形式不变性”看得云里雾里，想着“d𝑦=𝑓′(𝑥)d𝑥竟然也需要证？”．但当我仔细看了看微积分中导数𝑓′(𝑥)，微分d𝑥的定义，明晰了以前一直混淆的概念，发现这确实需要证明．不禁又一次感叹微积分的严谨（上一次是理解𝜀 − 𝛿语言时）．&quot; </span></p>
-<p><img src="/img/calculus/invariance1.svg" alt=""></p>
+<p><img src="/img/calculus/invariance.svg" alt=""></p>
 <p><img src="/img/calculus/invariance2.svg" alt=""></p>
 <p><img src="/img/calculus/invariance3.svg" alt=""></p>
 <!-- <embed id="pdf-embed" src="/pdf/invariance.pdf" type="application/pdf">
