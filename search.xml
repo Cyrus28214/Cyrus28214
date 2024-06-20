@@ -4797,7 +4797,7 @@ x_{t+1} &amp;= x_t + v_{t+1}
     <url>/post/a3d544432687/</url>
     <content><![CDATA[<p><img src="https://cyrus28214.top/img/FPGAmota.png" alt="demo"></p>
 <p>这是浙江大学2024春夏数字逻辑设计的课程设计，我们小组基于FPGA制作了一个魔塔游戏。视频演示如视频：</p>
-<p><a href="https://www.bilibili.com/video/BV1i9gkeAEEk/?spm_id_from=333.999.0.0&amp;vd_source=699198f39968129ad93842fd7205ff0d/">https://www.bilibili.com/video/BV1i9gkeAEEk/?spm_id_from=333.999.0.0&amp;vd_source=699198f39968129ad93842fd7205ff0d</a></p>
+<p><a href="https://www.bilibili.com/video/BV1i9gkeAEEk/">https://www.bilibili.com/video/BV1i9gkeAEEk/</a></p>
 <p>其中，本人主要负责代码的编写，包括时钟控制模块、VGA模块、地图渲染、数字渲染、地图交互、COE文件生成脚本、地图编辑器、Vivado TCL脚本等。</p>
 <p>开发环境使用Vivado，利用Vivado TCL脚本 + git来管理和协作开发。</p>
 <p>VGA模块我编写的时候使用了一个RAM映射到VGA输出，这样其他模块可以通过写RAM来渲染，实现解耦合和其他的一些好处。没有采用给的参考代码里输出<code>x, y</code>输入<code>color</code>的方法。</p>
