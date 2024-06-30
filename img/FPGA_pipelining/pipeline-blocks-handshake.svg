@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="47cm" height="8cm" viewBox="58 38 923 143" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffcf" x="60" y="40" width="400" height="140" rx="16" ry="16"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="60" y="40" width="400" height="140" rx="16" ry="16"/>
+  </g>
+  <text font-size="27.0933" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="260" y="119.375">
+    <tspan x="260" y="119.375">Data Source</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffcf" x="580" y="40" width="400" height="140" rx="16" ry="16"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="580" y="40" width="400" height="140" rx="16" ry="16"/>
+  </g>
+  <text font-size="27.0933" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="780" y="119.375">
+    <tspan x="780" y="119.375">Data sink</tspan>
+  </text>
+  <text font-size="18.0622" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="520" y="155.75">
+    <tspan x="520" y="155.75">Data</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x1="460" y1="160" x2="570.264" y2="160"/>
+    <polygon style="fill: #000000" points="577.764,160 567.764,165 570.264,160 567.764,155 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="577.764,160 567.764,165 570.264,160 567.764,155 "/>
+  </g>
+  <text font-size="18.0622" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="520" y="115.75">
+    <tspan x="520" y="115.75">STB (Valid)</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="460" y1="120" x2="570.264" y2="120"/>
+    <polygon style="fill: #000000" points="577.764,120 567.764,125 570.264,120 567.764,115 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="577.764,120 567.764,125 570.264,120 567.764,115 "/>
+  </g>
+  <text font-size="18.0622" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="520" y="75.75">
+    <tspan x="520" y="75.75">Busy</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="469.736" y1="80" x2="580" y2="80"/>
+    <polygon style="fill: #000000" points="462.236,80 472.236,75 469.736,80 472.236,85 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="462.236,80 472.236,75 469.736,80 472.236,85 "/>
+  </g>
+</svg>
