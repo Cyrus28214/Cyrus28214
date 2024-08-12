@@ -4292,7 +4292,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
   </entry>
   <entry>
     <title>CS231n/EECS598 学习笔记（二）Lecture 5-7</title>
-    <url>/post/95d04a016706/</url>
+    <url>/post/027c54b64ba1/</url>
     <content><![CDATA[<h2 id="lecture-5">Lecture 5</h2>
 <h3 id="neural-network">Neural Network</h3>
 <h4 id="线性分类器的局限">线性分类器的局限</h4>
@@ -4400,7 +4400,6 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>Stride: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span></li>
 </ol>
 <p>最终的输出为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>−</mo><mi>K</mi><mo>+</mo><mn>2</mn><mi>P</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>S</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(W - K + 2P) / S + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，我们一般会调整参数让这个式子能挣除。</p>
-<p><img src="/img/eecs598/convolution-summary.png" alt="非常实用的总结"></p>
 <h4 id="补充">补充</h4>
 <p>有时候会有卷积核大小为1x1的时候，这种层可以看作是每一个像素形成一个全连接层，通过这种方式可以将每一个位置对应的特征向量降维，有时候也是很有用的。</p>
 <p>其他维度的卷积。我们刚才讨论的都是2D卷积，实际上，也可以进行1D卷积，3D卷积等，道理是一样的。</p>
