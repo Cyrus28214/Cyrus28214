@@ -4293,8 +4293,8 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
   <entry>
     <title>CS231n/EECS598 学习笔记（二）Lecture 5-7</title>
     <url>/post/027c54b64ba1/</url>
-    <content><![CDATA[<h2 id="lecture-5">Lecture 5</h2>
-<h3 id="neural-network">Neural Network</h3>
+    <content><![CDATA[<h2 id="Lecture-5">Lecture 5</h2>
+<h3 id="Neural-Network">Neural Network</h3>
 <h4 id="线性分类器的局限">线性分类器的局限</h4>
 <p>Linear Classifier能做的其实很有限，从Lecture 3的“几何视角”中，我们知道了线性分类相当于画了一个超平面来将超空间分类。然而并非所有情况下样本点都可以被一个平面简单的分割。</p>
 <p><img src="/img/eecs598/hard-case-for-linear-classifier.png" alt=""></p>
@@ -4324,7 +4324,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>ReLU是深度学习中最常用的激活函数。</p>
 <p>激活函数可以非线性地变换空间，使得线性不可分的点云转化成线性可分的点云。</p>
 <p><img src="/img/eecs598/space-warping.png" alt=""></p>
-<h3 id="万能近似定理-universal-approximation-theorem">万能近似定理（Universal Approximation Theorem）</h3>
+<h3 id="万能近似定理（Universal-Approximation-Theorem）">万能近似定理（Universal Approximation Theorem）</h3>
 <blockquote>
 <p>万能近似定理（Universal Approximation Theorem）<br>
 <strong>单隐含层</strong>的神经网络可以拟合任意连续函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><msup><mi mathvariant="double-struck">R</mi><mi>n</mi></msup><mo>→</mo><msup><mi mathvariant="double-struck">R</mi><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">f: \mathbb{R}^n \rightarrow \mathbb{R}^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span></span></span></span></span></span></span>。</p>
@@ -4338,7 +4338,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>万能近似定理不能保证我们能否找到一组权值来最佳拟合，但是假如我们的目标函数是凸（convex）的，那么相关的理论可以保证，我们就能保证无论选取什么样的初始值，都能找到全局最优解。</p>
 <p>线性分类器的优化问题就是一个凸优化问题。对于线性分类器，无论你使用SVM loss还是Softmax，L1正则化还是L2正则化，最终的目标函数都是凸的！这意味着线性分类器可以保证一定收敛到全局最优解，线性分类器的优化问题具有确定性。</p>
 <p>然而，很遗憾的是，多层的神经网络并不具有这种性质，神经网络收敛到哪里依赖于随机初始化的值，或是优化的方法，神经网络不一定能收敛到全局最优解，可能陷入局部最优解，甚至不收敛。尽管在工程实践中神经网络取得了许多成功，神经网络的有效性并没有理论的保证，这仍然是一个相当活跃的研究领域。</p>
-<h2 id="lecture-6">Lecture 6</h2>
+<h2 id="Lecture-6">Lecture 6</h2>
 <h3 id="误差反向传播">误差反向传播</h3>
 <p>为了优化误差函数，寻找到最优的权值<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>，我们需要计算梯度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">∇</mi><mi>W</mi></msub><mi>L</mi></mrow><annotation encoding="application/x-tex">\nabla_W L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">W</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">L</span></span></span></span>。</p>
 <p>相比手动计算误差函数的梯度，更好的方法是发明一些数据结构和算法来自动计算梯度。</p>
@@ -4359,7 +4359,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p><img src="/img/eecs598/vector-derivative.png" alt=""></p>
 <p>这里的向量对标量求导很直观。而这里的向量对向量求导，实际上就是<strong>Jacobian矩阵</strong>（然而在实际的梯度计算中并不会显式地形成一个Jacobian矩阵）。</p>
 <p>反向传播不仅能计算一阶的梯度，也能计算更高阶的导数。</p>
-<h2 id="lecture-7">Lecture 7</h2>
+<h2 id="Lecture-7">Lecture 7</h2>
 <h3 id="卷积层">卷积层</h3>
 <p>在处理图像信息的时候，全连接层存在一个明显的局限性，全连接层会将一个32x32x3的图像，展开成一个3072维的向量，然后经过一个全连接的权矩阵<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>，计算出输出。但是这样的问题是，<strong>图片中原有的位置信息全部丢失了</strong>。</p>
 <p>卷积层可以解决这个问题。卷积层引入了卷积核，让卷积核在图片上滑动，然后计算卷积核覆盖的部分的带权和，输出到下一层。通过这种方式，卷积层保留了图片的空间信息。卷积核的大小一般是3x3或5x5。一个卷积层会包括不止一个卷积核，而是多个卷积核。</p>
@@ -4383,11 +4383,11 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>卷积核的大小：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>×</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">K \times K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span></li>
 </ul>
 <p>经过这样的一层卷积之后，图片的大小会变成<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>−</mo><mi>K</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">W - K + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></p>
-<h4 id="引入padding">引入Padding</h4>
+<h4 id="引入Padding">引入Padding</h4>
 <p>注意到我们上面的卷积会使得输出的图像形状变小几个像素，我们通常不希望输出发生这样的变化，最好是保证输入输出的形状保持相同，因此我们可以在图片的四个边缘加上<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>个像素，用“0”填充。</p>
 <p>这样，输出的图像大小就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>−</mo><mi>K</mi><mo>+</mo><mn>1</mn><mo>+</mo><mn>2</mn><mi>P</mi></mrow><annotation encoding="application/x-tex">W - K + 1 + 2P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>，当<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mi>K</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">P = (K - 1) / 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/2</span></span></span></span>时，输入输出的形状保持一致，这被称为“same padding”，也是最常用的一种设定。</p>
 <p>用“0”填充图片边缘会不会引入额外的信息？Justin Johnson提到，实际上，zero padding隐式地给图片引入了边缘的位置信息。有一些卷积核会通过边缘的“0”学习到如何识别图像边缘。这不好说是一种Bug还是Feature。</p>
-<h4 id="引入stride">引入Stride</h4>
+<h4 id="引入Stride">引入Stride</h4>
 <p><img src="/img/eecs598/receptive-fields.png" alt=""></p>
 <p>注意到，假如输入的图片很大，或者卷积核的尺寸很小，我们就需要更多的层数才能让某一点“看到”整张图片。如果我们能让图片的大小缩小一点，就可以加快这个“看到全局”的过程。</p>
 <p>因此我们可以引入一个stride，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>。当用卷积核遍历图片的时候，我们让卷积核每次移动的距离为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>，这样，输出图片的大小就会被大大缩小。</p>
@@ -4407,32 +4407,36 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <h3 id="池化层">池化层</h3>
 <p>刚刚提到了可以用Stride &gt; 1，构造一个downsample的卷积层。另一种downsample的方式是使用<strong>池化层</strong>。</p>
 <p>池化层一个好处就是它没有任何需要学习的参数。</p>
-<h4 id="max-pooling">Max Pooling</h4>
+<h4 id="Max-Pooling">Max Pooling</h4>
 <p>就是对每个区域计算最大值。</p>
 <p><img src="/img/eecs598/max-pooling.png" alt=""></p>
-<h4 id="average-pooling">Average Pooling</h4>
+<h4 id="Average-Pooling">Average Pooling</h4>
 <p>就是对每个区域计算平均值。</p>
 <h3 id="搭建神经网络">搭建神经网络</h3>
 <p>有了卷积层、池化层这些乐高积木，我们就可以搭建自己的卷积神经网络了。卷积神经网络通常从前到后，图片的形状维度会越来越小，特征维度会越来越大，形成一个“逐渐铺平”的效果，CNN一个经典的结构是LeNet-5。</p>
 <p><img src="/img/eecs598/LeNet-5.png" alt=""></p>
-<h2 id="batch-normalization">Batch Normalization</h2>
+<h2 id="Batch-Normalization">Batch Normalization</h2>
 <p>深度神经网络非常难以训练。</p>
 <p>比起层数少的神经网络，深度神经网络非常难收敛。为了解决这个问题，我们引入normalizatio层。其中最常用的一种是<strong>batch normalization</strong>。</p>
 <p>为什么normalization可以加速深度神经网络的收敛，我查阅了一些资料，以下是我的理解：</p>
 <p>深度神经网络因为层数深，当训练的时候存在“内耗”的问题。因为误差反向传播到中间的某一层的时候，实际上已经叠加了后面所有层的梯度，这一层不是在“配合”我们的正确输出，而是在“配合”之后的所有层。而这种误差会被放大，第i-1层会去拟合第i层，导致数据在流过深度神经网络的时候经历十分“曲折”的旅途，大部分时间不是为了拟合训练数据，而是为了相邻层之间的对齐，造成了一种“内耗”。</p>
-<p>这种现象的一种表现就是“internel covariate shift”，由于神经网络深度比较深，在训练的过程中每一层可能会不再独立同分布，使得某一层需要适应新的输入分布，还可能会造成数值落入激活函数的饱和区，造成梯度消失。batch normalization让输出保持平均值为0，标准差为1的“正态分布”。缓解了这个问题。</p>
+<p>这种现象的一种表现就是“internel covariate shift”，由于神经网络深度比较深，在训练的过程中每一层可能会不再独立同分布，使得某一层需要适应新的输入分布，还可能会造成数值落入激活函数的饱和区，造成梯度消失。batch normalization让输出保持平均值为0，标准差为1的“正态分布”。缓解了这个问题。（这就是统计上常用的“白化”处理）</p>
 <p><img src="/img/eecs598/batch-normalization.png" alt=""></p>
-<p>但是有时候，这个平均值为0，标准差为1的限制可能太过与严格。我们可以学习一个scale<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span></span></span></span>和一个shift<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>,令<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>γ</mi><mi>j</mi></msub><msub><mi>x</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>+</mo><msub><mi>β</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">y_{i,j} = \gamma_j x_{i,j} + \beta_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，然后在每个minibatch里面调整这两个参数。不过这带来一个问题，就是我们同一个batch里面的不同数据，会互相之间影响，并且在测试模型的时候，我们并没有所谓的minibatch给我们计算参数。</p>
-<p>所以我们可以在测试的时候，把这两个参数直接设置成训练的时候用过的参数的平均数。这样还带来了一个好处。由于normalization layer是线性的，因此当参数均为常数的时候，这一层可以合并到上一层，这是zero overhead!</p>
+<p>但是有时候，这个平均值为0，标准差为1的限制可能太过与严格，为了增加灵活性，增强模型的表达能力，我们可以学习一个scale<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span></span></span></span>和一个shift<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>,令<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>γ</mi><mi>j</mi></msub><msub><mi>x</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>+</mo><msub><mi>β</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">y_{i,j} = \gamma_j x_{i,j} + \beta_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，然后在每个minibatch里面调整这两个参数。不过这带来一个反直觉的问题，就是我们同一个batch里面的不同数据，会互相之间影响，并且在测试模型的时候，我们并没有所谓的minibatch给我们计算参数。</p>
+<p>所以我们可以在测试的时候，把这两个参数直接设置成训练时参数的移动平均。这样还带来了一个好处。由于normalization layer是线性的，因此当参数均为常数的时候，这一层可以合并到上一层，这是zero overhead!</p>
 <p>一般来说，batch normalization layer会放在fully-connected layer或convolution layer后面，激活函数的前面。</p>
 <p>好处：更快收敛、更稳定的随机初始化、test-time zero overhead等。</p>
 <p>坏处：暂未被理论很好地解释，在training和在testing表现不同。</p>
+<h2 id="Layer-Normalization">Layer Normalization</h2>
+<p>以下非课程内容，为个人学习并补充。</p>
+<p>近些年来，batch normalization变得越来越不流行。新的网络更多使用layer normalization。如transformer。</p>
+<p>layer normalization实际上比batch normalization更简单，它只对每个样本进行归一化，不依赖batch size，而且laer normalization在测试与训练表现一致。</p>
 <p>其他的Normalization方法：</p>
 <ul>
-<li>Layer Normalization: 在training和test表现相同，transformer中就有使用。</li>
-<li>Instance Normalization: 也在training和test表现相同，用于卷积神经网络。</li>
+<li>Instance Normalization：对每个样本的每个通道独立进行归一化，适合处理图像数据中的风格和内容。</li>
+<li>Group Normalization：将特征通道分成多个组，对每个组进行归一化处理，综合了 Batch Normalization 和 Layer Normalization 的优点，适合于小batch size 和高维数据。</li>
+<li>Weight Normalization：对权重矩阵进行归一化，将权重分解为规范化的部分和非规范化的部分，可以加速训练过程，提高模型收敛速度，特别是在深层网络中。</li>
 </ul>
-<p><img src="/img/eecs598/normalization-layers.png" alt=""></p>
 ]]></content>
       <categories>
         <category>DS&amp;AI</category>
@@ -5243,6 +5247,42 @@ x(t) &amp;= \lim_{T \to \infty} \sum_{n = -\infty}^{\infty} \Delta f \int_{-T/2}
         <tag>数学</tag>
         <tag>线性代数</tag>
         <tag>抽象代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS231n/EECS598 学习笔记（三）</title>
+    <url>/post/c7af0fe79630/</url>
+    <content><![CDATA[<h2 id="lecture-8">Lecture 8</h2>
+<h3 id="alexnet-2012">AlexNet (2012)</h3>
+<p>AlexNet是一个非常有影响力的卷积神经网络，Google Scholar显示，其原论文的引用已经达到了惊人的160203次。</p>
+<p>AlexNet的结构就是<code>(conv + [pool]) * 5 + (fc + dropout) * 3</code>，随着层数的增加，图片的长宽不断减少，而通道数不断增多。当通道数达到一定数量时，它们会flatten后作为特征输入全连接神经网络中。</p>
+<p>分析内存使用和参数量，可以发现AlexNet有趣的特征，随层数增加，内存占用变少，而参数量增多，即所有内存基本都在前面的卷积层，所有参数量基本都在后面的全连接层。</p>
+<h3 id="zfnet-2013">ZFNet (2013)</h3>
+<p>ZFNet基本上就是一个更大的AlexNet，但是其基本结构依然是相同的，前面是卷积层和池化层，后面是全连接层。</p>
+<h3 id="vgg-2014">VGG  (2014)</h3>
+<p>AlexNet和ZFNet的网络结构参数，即卷积核形状, 每层通道数，池化层形状，都是通过尝试人工设置出来的。这让网络的scale up变得困难。VGG提出了一种系统的卷积神经网络设计方法：</p>
+<ol>
+<li>所有卷积层都是3x3, 步长为1, 填充为1：两个3x3的卷积层优于一个5x5的卷积层，我们没有理由使用比3x3更大的卷积核。</li>
+<li>所有池化层就是2x2, 步长为2，使得长宽减半，每经过一个池化层，卷积的通道翻倍。这样的设计使得FLOPs数在每层之间保持相同。</li>
+</ol>
+<p><img src="/img/eecs598/vgg.png" alt="VGG"></p>
+<h3 id="googlenet-2014">GoogleNet (2014)</h3>
+<p>GoogleNet很有趣，我们看到了ZFNet和VGG都开始叠参数量，神经网络变得越来越大。但是GoogleNet是一个关注效率的网络，因为谷歌想要在现实中使用这个模型。</p>
+<p>GoogleNet为了达到这一点，卷积网络的空间维度下降得非常快，只经过了最初的几层，就从224x224降到了28x28。</p>
+<p>GoogleNet还是用了一种叫做Inception的模块，Inception使用多种不同尺寸的卷积核并行，加速了计算效率。</p>
+<p>GoogleNet还使用了一种叫做Global Average Pooling的技术，避免使用全连接层的巨大开销。</p>
+<h3 id="resnet-2015">ResNet (2015)</h3>
+<p><img src="/img/eecs598/revolution-of-depth.png" alt="Revolution of Depth"></p>
+<p>2015年之后，ImageNet获奖者的深度跳跃式地从十几层进化到几百层，发生了什么？</p>
+]]></content>
+      <categories>
+        <category>DS&amp;AI</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>CV</tag>
+        <tag>ML</tag>
+        <tag>CS231n</tag>
       </tags>
   </entry>
 </search>
