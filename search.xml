@@ -5287,4 +5287,21 @@ x(t) &amp;= \lim_{T \to \infty} \sum_{n = -\infty}^{\infty} \Delta f \int_{-T/2}
         <tag>CS231n</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CS231n/EECS598 学习笔记（目录）</title>
+    <url>/post/12035b3fb19c/</url>
+    <content><![CDATA[<p><a href="/post/02bfece66015/">CS231n/EECS598 学习笔记（一） Lecture 1-4</a></p>
+<p><a href="/post/027c54b64ba1/">CS231n/EECS598 学习笔记（二）Lecture 5-7</a></p>
+<p><a href="/post/0cb95d547f94/">CS231n/EECS598 学习笔记（三）</a></p>
+]]></content>
+      <categories>
+        <category>DS&amp;AI</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>CV</tag>
+        <tag>ML</tag>
+        <tag>CS231n</tag>
+      </tags>
+  </entry>
 </search>
