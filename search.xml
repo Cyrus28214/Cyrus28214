@@ -5251,29 +5251,31 @@ x(t) &amp;= \lim_{T \to \infty} \sum_{n = -\infty}^{\infty} \Delta f \int_{-T/2}
   </entry>
   <entry>
     <title>CS231n/EECS598 学习笔记（三）</title>
-    <url>/post/c7af0fe79630/</url>
-    <content><![CDATA[<h2 id="lecture-8">Lecture 8</h2>
-<h3 id="alexnet-2012">AlexNet (2012)</h3>
+    <url>/post/0cb95d547f94/</url>
+    <content><![CDATA[<p><em>未完成，持续更新中</em></p>
+<h2 id="Lecture-8">Lecture 8</h2>
+<h3 id="AlexNet-2012">AlexNet (2012)</h3>
 <p>AlexNet是一个非常有影响力的卷积神经网络，Google Scholar显示，其原论文的引用已经达到了惊人的160203次。</p>
 <p>AlexNet的结构就是<code>(conv + [pool]) * 5 + (fc + dropout) * 3</code>，随着层数的增加，图片的长宽不断减少，而通道数不断增多。当通道数达到一定数量时，它们会flatten后作为特征输入全连接神经网络中。</p>
 <p>分析内存使用和参数量，可以发现AlexNet有趣的特征，随层数增加，内存占用变少，而参数量增多，即所有内存基本都在前面的卷积层，所有参数量基本都在后面的全连接层。</p>
-<h3 id="zfnet-2013">ZFNet (2013)</h3>
+<h3 id="ZFNet-2013">ZFNet (2013)</h3>
 <p>ZFNet基本上就是一个更大的AlexNet，但是其基本结构依然是相同的，前面是卷积层和池化层，后面是全连接层。</p>
-<h3 id="vgg-2014">VGG  (2014)</h3>
+<h3 id="VGG-2014">VGG  (2014)</h3>
 <p>AlexNet和ZFNet的网络结构参数，即卷积核形状, 每层通道数，池化层形状，都是通过尝试人工设置出来的。这让网络的scale up变得困难。VGG提出了一种系统的卷积神经网络设计方法：</p>
 <ol>
 <li>所有卷积层都是3x3, 步长为1, 填充为1：两个3x3的卷积层优于一个5x5的卷积层，我们没有理由使用比3x3更大的卷积核。</li>
 <li>所有池化层就是2x2, 步长为2，使得长宽减半，每经过一个池化层，卷积的通道翻倍。这样的设计使得FLOPs数在每层之间保持相同。</li>
 </ol>
 <p><img src="/img/eecs598/vgg.png" alt="VGG"></p>
-<h3 id="googlenet-2014">GoogleNet (2014)</h3>
+<h3 id="GoogleNet-2014">GoogleNet (2014)</h3>
 <p>GoogleNet很有趣，我们看到了ZFNet和VGG都开始叠参数量，神经网络变得越来越大。但是GoogleNet是一个关注效率的网络，因为谷歌想要在现实中使用这个模型。</p>
 <p>GoogleNet为了达到这一点，卷积网络的空间维度下降得非常快，只经过了最初的几层，就从224x224降到了28x28。</p>
 <p>GoogleNet还是用了一种叫做Inception的模块，Inception使用多种不同尺寸的卷积核并行，加速了计算效率。</p>
 <p>GoogleNet还使用了一种叫做Global Average Pooling的技术，避免使用全连接层的巨大开销。</p>
-<h3 id="resnet-2015">ResNet (2015)</h3>
+<h3 id="ResNet-2015">ResNet (2015)</h3>
 <p><img src="/img/eecs598/revolution-of-depth.png" alt="Revolution of Depth"></p>
 <p>2015年之后，ImageNet获奖者的深度跳跃式地从十几层进化到几百层，发生了什么？</p>
+<p>ResNet提出了残差神经网络，解决了深度神经网络的梯度消失和梯度爆炸问题。</p>
 ]]></content>
       <categories>
         <category>DS&amp;AI</category>
