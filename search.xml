@@ -5002,26 +5002,6 @@ x_{t+1} &amp;= x_t + v_{t+1}
       </tags>
   </entry>
   <entry>
-    <title>Linux下解压各种格式的压缩文件</title>
-    <url>/post/60ad593258f8/</url>
-    <content><![CDATA[<h2 id="dtrx：-Do-The-Right-eXtraction">dtrx： Do The Right eXtraction</h2>
-<p>时代变了家人们，现在你再也不用记住各种压缩文件格式的解压命令了，只需要dtrx即可一键解压，<a href="https://github.com/brettcs/dtrx">dtrx</a>就是为此而生。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install dtrx</span><br><span class="line">dtrx -v archive.tar.gz <span class="comment"># v代表显示详细信息</span></span><br></pre></td></tr></table></figure>
-<p>目前，dtrx支持解压的格式有这么多：</p>
-<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">dtrx extracts archives in a number of different formats; it currently</span><br><span class="line">supports tar, zip (including self-extracting .exe files), cpio, rpm, deb,</span><br><span class="line">gem, 7z, cab, rar, lzh, arj, and InstallShield files.  It can also decompress</span><br><span class="line">files compressed with gzip, bzip2, lzma, xz, lrzip, lzip, or compress.</span><br></pre></td></tr></table></figure>
-<p>伟大，无需多言！</p>
-<p>dtrx会自动识别压缩文件的格式，并调用正确的解压程序进行解压。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>实用</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Softmax和交叉熵</title>
     <url>/post/0e500505d1ba/</url>
     <content><![CDATA[<p><span style="display: none">Softmax 是一种机器学习中常用的归一化函数。我们可以从它的名字来理解其含义。<br>
