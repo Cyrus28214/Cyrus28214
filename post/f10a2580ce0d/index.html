@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CTF Pwn 初探：PLT 表和 GOT 表 | Cyrus' Blog</title><meta name="author" content="cyrus28214"><meta name="copyright" content="cyrus28214"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在 pwn（二进制漏洞利用）中，理解 ELF 文件的 PLT（Procedure Linkage Table，过程链接表）和 GOT（Global Offset Table，全局偏移表）是非常重要的。这些表格用于解决函数调用时的延迟绑定（Lazy Binding），并且与动态链接库加载和 ASLR（Address Space Layout Randomization）防御机制有密切的关系。 ELF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Pwn 初探：PLT 表和 GOT 表">
+<meta property="og:url" content="https://cyrus28214.top/post/f10a2580ce0d/index.html">
+<meta property="og:site_name" content="Cyrus&#39; Blog">
+<meta property="og:description" content="在 pwn（二进制漏洞利用）中，理解 ELF 文件的 PLT（Procedure Linkage Table，过程链接表）和 GOT（Global Offset Table，全局偏移表）是非常重要的。这些表格用于解决函数调用时的延迟绑定（Lazy Binding），并且与动态链接库加载和 ASLR（Address Space Layout Randomization）防御机制有密切的关系。 ELF">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cyrus28214.top/img/icon512.png">
+<meta property="article:published_time" content="2024-10-17T08:40:02.000Z">
+<meta property="article:modified_time" content="2024-10-17T08:48:34.979Z">
+<meta property="article:author" content="cyrus28214">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Pwn">
+<meta property="article:tag" content="逆向">
+<meta property="article:tag" content="汇编">
+<meta property="article:tag" content="动态链接">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyrus28214.top/img/icon512.png"><link rel="shortcut icon" href="/img/icon32.png"><link rel="canonical" href="https://cyrus28214.top/post/f10a2580ce0d/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CTF Pwn 初探：PLT 表和 GOT 表',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-17 16:48:34'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Cyrus' Blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/icon512.png" onerror="onerror=null;src='/img/avatar/Akkarin.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">116</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://pan.cyrus28214.top"><i class="fa-fw fas fa-cloud"></i><span> 网盘</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: /img/pwndbg.pmg"><nav id="nav"><span id="blog-info"><a href="/" title="Cyrus' Blog"><span class="site-name">Cyrus' Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fas fa-flask"></i><span> 实验室</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://pan.cyrus28214.top"><i class="fa-fw fas fa-cloud"></i><span> 网盘</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CTF Pwn 初探：PLT 表和 GOT 表</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-17T08:40:02.000Z" title="发表于 2024-10-17 16:40:02">2024-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-17T08:48:34.979Z" title="更新于 2024-10-17 16:48:34">2024-10-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E5%AE%89/">信安</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CTF Pwn 初探：PLT 表和 GOT 表"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>在 <code>pwn</code>（二进制漏洞利用）中，理解 ELF 文件的 <code>PLT</code>（Procedure Linkage Table，过程链接表）和 <code>GOT</code>（Global Offset Table，全局偏移表）是非常重要的。这些表格用于解决函数调用时的延迟绑定（Lazy Binding），并且与动态链接库加载和 ASLR（Address Space Layout Randomization）防御机制有密切的关系。</p>
+<h2 id="ELF-文件的延迟绑定机制">ELF 文件的延迟绑定机制</h2>
+<p>ELF 文件中，函数的调用通过 <code>PLT</code> 表和 <code>GOT</code> 表进行管理。延迟绑定意味着程序在第一次调用一个函数时，不直接解析其地址，而是通过一套机制将解析过程推迟到运行时。具体来说，ELF 文件利用 <code>PLT</code> 表与 <code>GOT</code> 表实现了这一机制。</p>
+<ul>
+<li><strong>PLT 表</strong>：每次调用动态链接库中的函数时，程序并不会直接跳转到目标函数的地址，而是先跳转到 <code>PLT</code> 表中相应的入口。<code>PLT</code> 表中的代码会跳转到 <code>GOT</code> 表对应项，若这是该函数第一次调用，则会通过动态链接器解析该函数的实际地址。</li>
+<li><strong>GOT 表</strong>：<code>GOT</code> 表中的每一项用于存储函数的实际地址。在函数第一次调用之前，该项保存的是指向 <code>PLT</code> 表的某个偏移量；在函数解析之后，<code>GOT</code> 表中该函数的地址会被替换为实际的目标函数地址，以便后续直接调用。</li>
+</ul>
+<h3 id="延迟绑定流程">延迟绑定流程</h3>
+<p>当一个函数第一次被调用时：</p>
+<ol>
+<li><strong>PLT 表跳转</strong>：程序首先跳转到 <code>PLT</code> 表中的函数入口，这个入口中的指令会进一步跳转到 <code>GOT</code> 表中相应的项。</li>
+<li><strong>GOT 表未解析状态</strong>：如果这是第一次调用该函数，<code>GOT</code> 表中的内容仍然是 <code>PLT</code> 表中的某个偏移值（即 <code>func@plt+6</code>），程序会再次跳转到 <code>PLT</code> 中预定义的处理函数地址。</li>
+<li><strong>动态解析</strong>：通过动态链接器（<code>_dl_runtime_resolve</code>），程序会解析出该函数的实际地址，并将其存储在 <code>GOT</code> 表中，后续的函数调用将直接使用该地址。</li>
+</ol>
+<h3 id="实例解析">实例解析</h3>
+<p>以下是一个包含 <code>PLT</code> 表和 <code>GOT</code> 表的例子。我们可以通过调试工具 <code>pwndbg</code> 来查看程序的 <code>PLT</code> 和 <code>GOT</code> 表的内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; plt</span><br><span class="line">Section .plt 0x670-0x6c0:</span><br><span class="line">0x680: setbuf@plt</span><br><span class="line">0x690: <span class="built_in">printf</span>@plt</span><br><span class="line">0x6a0: <span class="built_in">read</span>@plt</span><br><span class="line">0x6b0: memcmp@plt</span><br></pre></td></tr></table></figure>
+<p>通过 <code>x/4i</code> 查看 <code>printf@plt</code> 的汇编指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; x/4i 0x690</span><br><span class="line">   0x690 &lt;<span class="built_in">printf</span>@plt&gt;:  jmp    QWORD PTR [rip+0x20092a]        <span class="comment"># 0x200fc0 &lt;printf@got.plt&gt;</span></span><br><span class="line">   0x696 &lt;<span class="built_in">printf</span>@plt+6&gt;:        push   0x1</span><br><span class="line">   0x69b &lt;<span class="built_in">printf</span>@plt+11&gt;:       jmp    0x670</span><br></pre></td></tr></table></figure>
+<p>当程序调用 <code>printf@plt</code> 时，首先会跳转到 <code>GOT</code> 表中的 <code>printf@got.plt</code> 项。我们可以进一步查看 <code>GOT</code> 表的内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; x/a 0x200fc0</span><br><span class="line">0x200fc0 &lt;<span class="built_in">printf</span>@got.plt&gt;:      0x696 &lt;<span class="built_in">printf</span>@plt+6&gt;</span><br></pre></td></tr></table></figure>
+<p>这里可以看到，<code>got.plt</code> 中 <code>printf</code> 的初始值是 <code>printf@plt+6</code>，意味着函数的第一次调用会回到 <code>PLT</code> 表。此时，<code>PLT</code> 表会通过 <code>push</code> 和 <code>jmp</code> 指令处理动态解析过程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; x/10i 0x690</span><br><span class="line">   0x690 &lt;<span class="built_in">printf</span>@plt&gt;:  jmp    QWORD PTR [rip+0x20092a]        <span class="comment"># 0x200fc0 &lt;printf@got.plt&gt;</span></span><br><span class="line">   0x696 &lt;<span class="built_in">printf</span>@plt+6&gt;:        push   0x1</span><br><span class="line">   0x69b &lt;<span class="built_in">printf</span>@plt+11&gt;:       jmp    0x670</span><br><span class="line">   0x6a0 &lt;<span class="built_in">read</span>@plt&gt;:    jmp    QWORD PTR [rip+0x200922]        <span class="comment"># 0x200fc8 &lt;read@got.plt&gt;</span></span><br><span class="line">   0x6a6 &lt;<span class="built_in">read</span>@plt+6&gt;:  push   0x2</span><br><span class="line">   0x6ab &lt;<span class="built_in">read</span>@plt+11&gt;: jmp    0x670</span><br><span class="line">   0x6b0 &lt;memcmp@plt&gt;:  jmp    QWORD PTR [rip+0x20091a]        <span class="comment"># 0x200fd0 &lt;memcmp@got.plt&gt;</span></span><br><span class="line">   0x6b6 &lt;memcmp@plt+6&gt;:        push   0x3</span><br><span class="line">   0x6bb &lt;memcmp@plt+11&gt;:       jmp    0x670</span><br><span class="line">   0x6c0 &lt;__cxa_finalize@plt&gt;:  jmp    QWORD PTR [rip+0x200932]        <span class="comment"># 0x200ff8</span></span><br></pre></td></tr></table></figure>
+<h3 id="进一步分析">进一步分析</h3>
+<p>在第一次调用函数时，<code>PLT</code> 会执行一个类似如下的流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func@plt:</span><br><span class="line">    jmp *(func@got.plt)  ; 如果函数已经初始化，跳转到函数地址</span><br><span class="line">    push reloc_index     ; 将函数在 `GOT` 表中的索引压栈</span><br><span class="line">    push link_map_obj    ; 模块的 `link_map` 对象地址</span><br><span class="line">    jmp _dl_runtime_resolve ; 动态链接解析函数</span><br></pre></td></tr></table></figure>
+<p><code>_dl_runtime_resolve(link_map_obj, reloc_index)</code> 负责解析函数的真实地址，并将其写入 <code>GOT</code> 表。解析完成后，程序跳转到函数的实际地址。该过程仅在第一次调用时执行，后续调用将直接使用 <code>GOT</code> 表中的已解析地址。</p>
+<h2 id="结语">结语</h2>
+<p>理解 <code>PLT</code> 和 <code>GOT</code> 表的工作机制是理解现代二进制漏洞利用的重要一步。通过掌握延迟绑定流程、动态解析机制以及如何绕过保护机制（如 PIE、NX 和 ASLR），我们可以深入探索漏洞利用的更多技巧。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/falling-dusk/p/17856141.html">https://www.cnblogs.com/falling-dusk/p/17856141.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.appknox.com/blog/bypassing-pie-nx-and-aslr">https://www.appknox.com/blog/bypassing-pie-nx-and-aslr</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014377094/article/details/124391914">https://blog.csdn.net/u014377094/article/details/124391914</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cyrus28214.top">cyrus28214</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cyrus28214.top/post/f10a2580ce0d/">https://cyrus28214.top/post/f10a2580ce0d/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cyrus28214.top" target="_blank">Cyrus' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CTF/">CTF</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Pwn/">Pwn</a><a class="post-meta__tags" href="/tags/%E9%80%86%E5%90%91/">逆向</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96/">汇编</a><a class="post-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/">动态链接</a></div><div class="post_share"><div class="social-share" data-image="/img/icon512.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/reward/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/reward/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/437a11a61e7e/" title="Life is too short to worry"><img class="cover" src="/img/ryo.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Life is too short to worry</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/d157634e8674/" title="ZJU校巴-Reverse1解题记录"><img class="cover" src="/img/s/6523978ec458853aef40ef58.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-09</div><div class="title">ZJU校巴-Reverse1解题记录</div></div></a></div><div><a href="/post/fda98bd4456d/" title="ZJU校巴-SQL_injection解题记录"><img class="cover" src="/img/s/6523a836c458853aef484b4c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-14</div><div class="title">ZJU校巴-SQL_injection解题记录</div></div></a></div><div><a href="/post/33f3f8cb15c3/" title="ZJU校巴-calculator解题记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-02</div><div class="title">ZJU校巴-calculator解题记录</div></div></a></div><div><a href="/post/113f0b50c150/" title="CTF101-安全攻防实践"><img class="cover" src="/img/CTF101/info.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-05</div><div class="title">CTF101-安全攻防实践</div></div></a></div><div><a href="/post/4fc4538d6849/" title="Linux下的inode与软硬链接"><img class="cover" src="/img/s/652a2545c458853aef801039.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-14</div><div class="title">Linux下的inode与软硬链接</div></div></a></div><div><a href="/post/cccf6f3d6d50/" title="Linux中的三种时间戳：atime、mtime、ctime"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-07</div><div class="title">Linux中的三种时间戳：atime、mtime、ctime</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/icon512.png" onerror="this.onerror=null;this.src='/img/avatar/Akkarin.jpg'" alt="avatar"/></div><div class="author-info__name">cyrus28214</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">116</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" href="/img/social/WeChatOfficial.jpg"><i class="fab fa-weixin"></i><span>关注微信公众号</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cyrus28214" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cyrus28214@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/img/social/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #259ce1;"></i></a><a class="social-icon" href="/img/social/WeChat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #08c061;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/cyrus28214" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0080f7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ELF-%E6%96%87%E4%BB%B6%E7%9A%84%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">ELF 文件的延迟绑定机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">延迟绑定流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">实例解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">进一步分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">2.</span> <span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/f10a2580ce0d/" title="CTF Pwn 初探：PLT 表和 GOT 表"><div style="background: /img/pwndbg.pmg"></div></a><div class="content"><a class="title" href="/post/f10a2580ce0d/" title="CTF Pwn 初探：PLT 表和 GOT 表">CTF Pwn 初探：PLT 表和 GOT 表</a><time datetime="2024-10-17T08:40:02.000Z" title="发表于 2024-10-17 16:40:02">2024-10-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/437a11a61e7e/" title="Life is too short to worry"><img src="/img/ryo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Life is too short to worry"/></a><div class="content"><a class="title" href="/post/437a11a61e7e/" title="Life is too short to worry">Life is too short to worry</a><time datetime="2024-09-15T13:31:02.000Z" title="发表于 2024-09-15 21:31:02">2024-09-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/66ee04310549/" title="CMU2024暑期夏令营总结"><img src="/img/CMU/class.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CMU2024暑期夏令营总结"/></a><div class="content"><a class="title" href="/post/66ee04310549/" title="CMU2024暑期夏令营总结">CMU2024暑期夏令营总结</a><time datetime="2024-09-05T13:41:06.000Z" title="发表于 2024-09-05 21:41:06">2024-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/113f0b50c150/" title="CTF101-安全攻防实践"><img src="/img/CTF101/info.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF101-安全攻防实践"/></a><div class="content"><a class="title" href="/post/113f0b50c150/" title="CTF101-安全攻防实践">CTF101-安全攻防实践</a><time datetime="2024-09-05T07:37:53.000Z" title="发表于 2024-09-05 15:37:53">2024-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b173a6854994/" title="修复Windows的智能多宿主解析造成sing-box TUN模式出现DNS泄露"><img src="/img/multihomed-name-resolution.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="修复Windows的智能多宿主解析造成sing-box TUN模式出现DNS泄露"/></a><div class="content"><a class="title" href="/post/b173a6854994/" title="修复Windows的智能多宿主解析造成sing-box TUN模式出现DNS泄露">修复Windows的智能多宿主解析造成sing-box TUN模式出现DNS泄露</a><time datetime="2024-08-31T05:05:47.000Z" title="发表于 2024-08-31 13:05:47">2024-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By cyrus28214</div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2023012548号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const getGiscusTheme = theme => {
+    return theme === 'dark' ? 'dark' : 'light'
+  }
+
+  const loadGiscus = () => {
+    const config = Object.assign({
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'cyrus28214/giscus',
+      'data-repo-id': 'R_kgDOLnfx3Q',
+      'data-category-id': 'DIC_kwDOLnfx3c4CeVrb',
+      'data-mapping': 'pathname',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true
+    },null)
+
+    const ele = document.createElement('script')
+    for (let key in config) {
+      ele.setAttribute(key, config[key])
+    }
+    document.getElementById('giscus-wrap').appendChild(ele)
+  }
+
+  const changeGiscusTheme = theme => {
+    const sendMessage = message => {
+      const iframe = document.querySelector('iframe.giscus-frame')
+      if (!iframe) return
+      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app')
+    }
+
+    sendMessage({
+      setConfig: {
+        theme: getGiscusTheme(theme)
+      }
+    });
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment= loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

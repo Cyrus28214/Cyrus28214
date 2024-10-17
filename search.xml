@@ -5482,9 +5482,9 @@ Lab2、Lab3: 10% * 2 * 2 = 40%</p>
   </entry>
   <entry>
     <title>CTF Pwn 初探：PLT 表和 GOT 表</title>
-    <url>/post/b855688476ea/</url>
+    <url>/post/f10a2580ce0d/</url>
     <content><![CDATA[<p>在 <code>pwn</code>（二进制漏洞利用）中，理解 ELF 文件的 <code>PLT</code>（Procedure Linkage Table，过程链接表）和 <code>GOT</code>（Global Offset Table，全局偏移表）是非常重要的。这些表格用于解决函数调用时的延迟绑定（Lazy Binding），并且与动态链接库加载和 ASLR（Address Space Layout Randomization）防御机制有密切的关系。</p>
-<h2 id="elf-文件的延迟绑定机制">ELF 文件的延迟绑定机制</h2>
+<h2 id="ELF-文件的延迟绑定机制">ELF 文件的延迟绑定机制</h2>
 <p>ELF 文件中，函数的调用通过 <code>PLT</code> 表和 <code>GOT</code> 表进行管理。延迟绑定意味着程序在第一次调用一个函数时，不直接解析其地址，而是通过一套机制将解析过程推迟到运行时。具体来说，ELF 文件利用 <code>PLT</code> 表与 <code>GOT</code> 表实现了这一机制。</p>
 <ul>
 <li><strong>PLT 表</strong>：每次调用动态链接库中的函数时，程序并不会直接跳转到目标函数的地址，而是先跳转到 <code>PLT</code> 表中相应的入口。<code>PLT</code> 表中的代码会跳转到 <code>GOT</code> 表对应项，若这是该函数第一次调用，则会通过动态链接器解析该函数的实际地址。</li>
@@ -5520,7 +5520,7 @@ Lab2、Lab3: 10% * 2 * 2 = 40%</p>
 </ul>
 ]]></content>
       <categories>
-        <category>生活信安</category>
+        <category>信安</category>
       </categories>
       <tags>
         <tag>CTF</tag>
