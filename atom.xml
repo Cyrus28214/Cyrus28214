@@ -283,9 +283,9 @@ Softmax 和普通的max 函数不同，它更加“软”，max 函数给出一�
     <category term="嵌入式" scheme="https://cyrus28214.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
     
-    <category term="FPGA" scheme="https://cyrus28214.top/tags/FPGA/"/>
-    
     <category term="数字逻辑" scheme="https://cyrus28214.top/tags/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/"/>
+    
+    <category term="FPGA" scheme="https://cyrus28214.top/tags/FPGA/"/>
     
     <category term="Verilog" scheme="https://cyrus28214.top/tags/Verilog/"/>
     
@@ -349,9 +349,9 @@ Softmax 和普通的max 函数不同，它更加“软”，max 函数给出一�
     
     <category term="心得" scheme="https://cyrus28214.top/tags/%E5%BF%83%E5%BE%97/"/>
     
-    <category term="FPGA" scheme="https://cyrus28214.top/tags/FPGA/"/>
-    
     <category term="数字逻辑" scheme="https://cyrus28214.top/tags/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/"/>
+    
+    <category term="FPGA" scheme="https://cyrus28214.top/tags/FPGA/"/>
     
     <category term="Verilog" scheme="https://cyrus28214.top/tags/Verilog/"/>
     
