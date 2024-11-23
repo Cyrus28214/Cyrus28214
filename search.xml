@@ -5369,7 +5369,7 @@ Lab2、Lab3: 10% * 2 * 2 = 40%</p>
 <p>通过这个项目，我不仅在技术上得到了长足的进步，还拓宽了视野，结识了许多志同道合的朋友和学术伙伴。这次国际交流项目让我对未来的学术和职业发展有了更加清晰的认识，也激发了我继续探索计算机视觉和人工智能的热情。未来，我将继续深耕这一领域，为人工智能的应用和发展贡献自己的力量。</p>
 <h2 id="正文">正文</h2>
 <p>漂亮话说完了，下面是流水账，我就按时间顺序稍微回忆一下：</p>
-<h3 id="pre-learning-course">Pre-learning Course</h3>
+<h3 id="Pre-learning-Course">Pre-learning Course</h3>
 <p>这个项目在开始之前提供了几节线上的预修课程，还有一些预修材料。我惊喜的发现预修材料里面居然有CS231n，这我熟啊（bushi</p>
 <p>线上课程在zoom上面上，授课是英文的，基本上是一些基础的CV概念，附带一些Graphics和Robotics的内容。查了一下，授课的Tianyi Zhang的background就是机器人相关的，难怪。这个Tianyi也将会是我们之后线下课程的TA。</p>
 <p>因为我已经有所了解，所以也没怎么认真听。</p>
@@ -5418,7 +5418,7 @@ Lab2、Lab3: 10% * 2 * 2 = 40%</p>
 <p><img src="/img/CMU/class.jpg" alt=""></p>
 <p>TA就是之前online courses的<a href="https://tyz1030.github.io/">Tianyi Zhang</a>，人也很nice，陆本、Michigan硕、CMU PhD，目前在做潜艇机器人。</p>
 <p>在日程表上面安排的TA Session里，他也和我们交流了一些留学的经历和经验，对我来说收获还是挺大的。</p>
-<h3 id="project-pre">Project &amp; Pre</h3>
+<h3 id="Project-Pre">Project &amp; Pre</h3>
 <p>项目安排了三个Final Project给我们选择：</p>
 <ol>
 <li>AR</li>
@@ -5428,12 +5428,11 @@ Lab2、Lab3: 10% * 2 * 2 = 40%</p>
 <p>因为我有CS231n的学习经验，所以我倾向于选择Transformer，Transformer这个项目里面分成两个task，一个是Captioning，另一个是利用ViT做Classification。</p>
 <p>项目的代码框架其实都搭好了，能够自由发挥的空间不大，我基本上是独立完成了代码部分，有几位组员也差不多，最后把我们的代码放在一起看了一下。</p>
 <p>项目一个难点是在后面的Pre部分，因为其实在这样受限的代码框架内能讲出来的创新点真不多。（其实现在看来他给的代码框架应该是可以随便修改的，当时把这个看太严格了，不过其他小组似乎也没怎么改动）</p>
-<p>组里也有大三、大二，<strong>但是最后Pre的任务还是落到了大一的我的头上</strong>，咱也不知道为什么。反正分配给我的任务我踏踏实实做好就是了。</p>
 <p>做项目的过程中还出现了一个乌龙，我经过一些探索，对ViT模型的数据做了一点Data Argumentation，把准确率提高了5%，同时显著减少了过拟合现象。</p>
 <p>然后组里的那个大三的同学，就让负责做PPT的同学把“LRQ的部分加上”（LRQ是我的姓名缩写），结果那个同学误解了，不知道去网上哪里找了个“LQR”算法，然后称我们再项目中使用了这个算法。我疯狂暗示做PPT的同学，没想到她到最后还是没有发现有什么不对，最后还是那个大三的同学把这部分改过来了，感谢。</p>
 <p>没有责怪那个做PPT的同学的意思，只是觉得这个乌龙特别搞笑hhh</p>
 <p><img src="/img/CMU/misunderstanding.jpg" alt=""></p>
-<p>最后做Pre的时候效还蛮不错的，我觉得背稿子效果不好，所以我只是大概写了一个提要，然后自由发挥，由于英语水平的缘故还是有一点不太流利，但是最后效果还不错，Shubham评价我的Data Argumentation策略好，对Transformer的介绍以及对Learning Rate对模型效果影响的分析也好，但是用时有点超过限制了。</p>
+<p>经过分工的讨论，由我来负责做pre。最后做Pre的时候效果还蛮不错的，我觉得背稿子效果不好，所以我只是大概写了一个提要，然后自由发挥，由于英语水平的缘故还是有一点不太流利，但是最后效果还不错，Shubham评价我的Data Argumentation策略好，对Transformer的介绍以及对Learning Rate对模型效果影响的分析也好，但是用时有点超过限制了。</p>
 <p><img src="/img/CMU/pre.png" alt=""></p>
 <p>标题打码是因为取的太唐了，这张照片我还闭眼了</p>
 <h3 id="文化活动">文化活动</h3>
